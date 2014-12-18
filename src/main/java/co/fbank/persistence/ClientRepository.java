@@ -17,5 +17,5 @@ import co.fbank.model.Client;
  */
 @Transactional
 public interface ClientRepository extends CrudRepository<Client, Long> {
-
+	
 }

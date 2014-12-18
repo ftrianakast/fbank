@@ -3,6 +3,7 @@ package co.fbank.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -28,7 +29,7 @@ public class Account {
 	@Column
 	private Double balance;
 
-	@OneToMany(fetch = FetchType.LAZY)
+	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
 	private List<Movement> movements;
 
 	/**

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -33,8 +34,7 @@ public class AccountController {
 		try {
 			Client searchedClient = clientRepository.findOne(clientId);
 			if (searchedClient != null) {
-				Account account = new Account(0.0,
-						new ArrayList<Movement>());
+				Account account = new Account(0.0, new ArrayList<Movement>());
 				searchedClient.getAccounts().add(account);
 				accountRepository.save(account);
 				return "The account was added correctly with a number: "
@@ -44,6 +44,24 @@ public class AccountController {
 			}
 		} catch (Exception e) {
 			return "There was an error adding the account" + e.getMessage();
+		}
+	}
+
+	@RequestMapping(value = "/accounts/{id}", method = RequestMethod.GET)
+	public Account getAccount(@PathVariable Long id) {
+		Account searchedAccount = accountRepository.findOne(id);
+		return searchedAccount;
+	}
+
+	@RequestMapping(value = "/accounts/{id}", method = RequestMethod.DELETE)
+	@ResponseStatus(HttpStatus.ACCEPTED)
+	@ResponseBody
+	public String deleteAccount(@PathVariable Long id) {
+		try {
+			accountRepository.delete(id);
+			return "The account was successfully removed";
+		} catch (Exception e) {
+			return "There was an error removing the account. Verify the account number, probably it doesn't exist";
 		}
 	}
 }

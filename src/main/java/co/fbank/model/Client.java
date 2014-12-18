@@ -3,6 +3,7 @@ package co.fbank.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -33,7 +34,7 @@ public class Client {
 	@Column(nullable = false)
 	private String phone;
 
-	@OneToMany(fetch = FetchType.LAZY)
+	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
 	private List<Account> accounts;
 
 	/**

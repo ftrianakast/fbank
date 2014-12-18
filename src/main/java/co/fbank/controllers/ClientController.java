@@ -41,8 +41,6 @@ public class ClientController {
 	@ResponseBody
 	public Client getClient(@PathVariable Long id){
 		Client searchedClient = clientRepository.findOne(id);
-		System.out.println("-----------------------------------------------------------");
-		System.out.println(searchedClient.getAccounts());
 		return searchedClient;
 	}
 	
