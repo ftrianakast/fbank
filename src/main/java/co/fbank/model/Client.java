@@ -1,17 +1,40 @@
-package co.fbank.core;
+package co.fbank.model;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 /**
- * 
- * @author felipe
- *
+ * @author Felipe Triana
+ * @version 1.0
  */
+@Entity
+@Table(name = "Client")
 public class Client {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+
+	@Column(nullable = false)
 	private String name;
+
+	@Column(nullable = false)
 	private String address;
+
+	@Column(nullable = false)
 	private String phone;
-	private ArrayList<Account> accounts;
+
+	@OneToMany(fetch = FetchType.LAZY)
+	private List<Account> accounts;
 
 	/**
 	 * Constructor
@@ -28,6 +51,12 @@ public class Client {
 		this.address = address;
 		this.phone = phone;
 		this.accounts = accounts;
+	}
+
+	/**
+	 * JPA required constructor
+	 */
+	protected Client() {
 	}
 
 	public String getName() {
@@ -54,11 +83,19 @@ public class Client {
 		this.phone = phone;
 	}
 
-	public ArrayList<Account> getAccounts() {
+	public List<Account> getAccounts() {
 		return accounts;
 	}
 
 	public void setAccounts(ArrayList<Account> accounts) {
 		this.accounts = accounts;
+	}
+	
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 }

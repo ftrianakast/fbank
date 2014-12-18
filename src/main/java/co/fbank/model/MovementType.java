@@ -1,4 +1,4 @@
-package co.fbank.core;
+package co.fbank.model;
 
 public enum MovementType {
 	CREDIT, DEBIT

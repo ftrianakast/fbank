@@ -1,20 +1,35 @@
-package co.fbank.core;
+package co.fbank.model;
 
 import java.util.Date;
 
-/**
- * 
- * @author felipe
- *
- */
-public class Movement {
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
-	public MovementType type;
-	public Date date;
-	public Double value;
+/**
+ * @author Felipe Triana
+ * @version 1.0
+ */
+@Entity
+public class Movement {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+
+	@Column(nullable = false)
+	private MovementType type;
+
+	@Column(nullable = false)
+	private Date date;
+
+	@Column(nullable = false)
+	private Double value;
 
 	/**
 	 * Constructor
+	 * 
 	 * @param type
 	 * @param date
 	 * @param value
@@ -24,6 +39,12 @@ public class Movement {
 		this.type = type;
 		this.date = date;
 		this.value = value;
+	}
+
+	/**
+	 * JPA required constructor
+	 */
+	protected Movement() {
 	}
 
 	public MovementType getType() {
