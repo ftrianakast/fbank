@@ -7,10 +7,10 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import co.fbank.model.Account;
-import co.fbank.model.Client;
-import co.fbank.model.Movement;
-import co.fbank.model.MovementType;
+import co.fbank.domain.Account;
+import co.fbank.domain.Client;
+import co.fbank.domain.Movement;
+import co.fbank.domain.MovementType;
 import co.fbank.persistence.ClientRepository;
 import co.fbank.services.utils.DateManipulation;
 

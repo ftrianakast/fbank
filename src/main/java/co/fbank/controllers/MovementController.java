@@ -16,8 +16,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 import co.fbank.controllers.aux.MovementAux;
-import co.fbank.model.Account;
-import co.fbank.model.Movement;
+import co.fbank.domain.Account;
+import co.fbank.domain.Movement;
 import co.fbank.persistence.AccountRepository;
 import co.fbank.persistence.MovementRepository;
 import co.fbank.services.AccountMovement;

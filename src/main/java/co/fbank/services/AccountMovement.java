@@ -1,7 +1,7 @@
 package co.fbank.services;
 
-import co.fbank.model.Account;
-import co.fbank.model.Movement;
+import co.fbank.domain.Account;
+import co.fbank.domain.Movement;
 import co.fbank.services.exceptions.MovementTypeNotAllowedException;
 import co.fbank.services.exceptions.NegativeBalanceException;
 

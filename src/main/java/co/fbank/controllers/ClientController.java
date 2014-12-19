@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 import co.fbank.controllers.aux.ReportRequest;
-import co.fbank.model.Client;
+import co.fbank.domain.Client;
 import co.fbank.persistence.ClientRepository;
 import co.fbank.services.report.Report;
 import co.fbank.services.report.ReportGenerator;

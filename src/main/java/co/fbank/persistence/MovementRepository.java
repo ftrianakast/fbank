@@ -2,7 +2,7 @@ package co.fbank.persistence;
 
 import org.springframework.data.repository.CrudRepository;
 
-import co.fbank.model.Movement;
+import co.fbank.domain.Movement;
 
 /**
  * A Repository for the entity Movement is simply created by extending the CrudRepository

@@ -2,7 +2,7 @@ package co.fbank.services;
 
 import java.math.BigDecimal;
 
-import co.fbank.model.MovementType;
+import co.fbank.domain.MovementType;
 
 public interface BalanceValidator {
 

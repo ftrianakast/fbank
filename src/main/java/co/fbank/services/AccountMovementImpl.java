@@ -8,9 +8,9 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import co.fbank.model.Account;
-import co.fbank.model.Movement;
-import co.fbank.model.MovementType;
+import co.fbank.domain.Account;
+import co.fbank.domain.Movement;
+import co.fbank.domain.MovementType;
 import co.fbank.persistence.AccountRepository;
 import co.fbank.persistence.MovementRepository;
 import co.fbank.services.exceptions.MovementTypeNotAllowedException;

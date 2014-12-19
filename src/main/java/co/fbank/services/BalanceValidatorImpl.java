@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 
 import org.springframework.stereotype.Service;
 
-import co.fbank.model.MovementType;
+import co.fbank.domain.MovementType;
 
 @Service
 public class BalanceValidatorImpl implements BalanceValidator {

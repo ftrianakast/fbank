@@ -1,4 +1,4 @@
-package co.fbank.model;
+package co.fbank.domain;
 
 import java.util.ArrayList;
 import java.util.List;

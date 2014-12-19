@@ -1,4 +1,4 @@
-package co.fbank.model;
+package co.fbank.domain;
 
 import java.math.BigDecimal;
 import java.util.List;

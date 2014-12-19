@@ -4,8 +4,8 @@ import java.math.BigDecimal;
 import java.util.Date;
 import java.util.Optional;
 
-import co.fbank.model.Movement;
-import co.fbank.model.MovementType;
+import co.fbank.domain.Movement;
+import co.fbank.domain.MovementType;
 import co.fbank.services.utils.Constants;
 
 /**

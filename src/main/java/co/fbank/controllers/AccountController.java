@@ -13,9 +13,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-import co.fbank.model.Account;
-import co.fbank.model.Client;
-import co.fbank.model.Movement;
+import co.fbank.domain.Account;
+import co.fbank.domain.Client;
+import co.fbank.domain.Movement;
 import co.fbank.persistence.AccountRepository;
 import co.fbank.persistence.ClientRepository;
 

@@ -2,7 +2,7 @@ package co.fbank.persistence;
 
 import org.springframework.data.repository.CrudRepository;
 
-import co.fbank.model.Client;
+import co.fbank.domain.Client;
 
 /**
  * A Repository for the entity Client is simply created by extending the CrudRepository
