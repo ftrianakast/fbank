@@ -15,15 +15,22 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import co.fbank.model.Client;
 import co.fbank.persistence.ClientRepository;
 
+/**
+ * 
+ * @author Felipe Triana
+ * @version 1.0
+ */
 @Controller
 public class ClientController {
 
 	@Autowired
 	private ClientRepository clientRepository;
 
-	public ClientController() {
-	}
-
+	/**
+	 * 
+	 * @param client
+	 * @return
+	 */
 	@RequestMapping(value = "/clients", method = RequestMethod.POST)
 	@ResponseStatus(HttpStatus.CREATED)
 	@ResponseBody
@@ -36,6 +43,11 @@ public class ClientController {
 		}
 	}
 
+	/**
+	 * 
+	 * @param id
+	 * @return
+	 */
 	@RequestMapping(value = "/clients/{id}", method = RequestMethod.GET)
 	@ResponseStatus(HttpStatus.OK)
 	@ResponseBody
@@ -44,6 +56,11 @@ public class ClientController {
 		return searchedClient;
 	}
 
+	/**
+	 * 
+	 * @param id
+	 * @return
+	 */
 	@RequestMapping(value = "/clients/{id}", method = RequestMethod.DELETE)
 	@ResponseStatus(HttpStatus.ACCEPTED)
 	@ResponseBody
@@ -56,6 +73,14 @@ public class ClientController {
 		}
 	}
 
+	/**
+	 * 
+	 * @param id
+	 *            Its the client id
+	 * @param client
+	 *            Its the new representation of the client
+	 * @return
+	 */
 	@RequestMapping(value = "/clients/{id}", method = RequestMethod.PUT)
 	@ResponseStatus(HttpStatus.ACCEPTED)
 	@ResponseBody

@@ -35,7 +35,7 @@ public class Movement {
 	@JoinColumn(name = "accountNumber")
 	@JsonBackReference
 	private Account account;
-	
+
 	/**
 	 * Constructor
 	 * 
@@ -80,4 +80,19 @@ public class Movement {
 		this.value = value;
 	}
 
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public Account getAccount() {
+		return account;
+	}
+
+	public void setAccount(Account account) {
+		this.account = account;
+	}
 }

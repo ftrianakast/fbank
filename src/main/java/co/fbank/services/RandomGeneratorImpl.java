@@ -11,5 +11,4 @@ public class RandomGeneratorImpl implements RandomGenerator {
 		Random randomGen = new Random();
 		return new Long(randomGen.nextLong());
 	}
-
 }

@@ -18,6 +18,10 @@ import co.fbank.model.Movement;
 import co.fbank.persistence.AccountRepository;
 import co.fbank.persistence.ClientRepository;
 
+/**
+ * @author Felipe Triana
+ * @version 1.0
+ */
 @Controller
 public class AccountController {
 	@Autowired
@@ -26,6 +30,11 @@ public class AccountController {
 	@Autowired
 	private ClientRepository clientRepository;
 
+	/**
+	 * 
+	 * @param clientId
+	 * @return
+	 */
 	@RequestMapping(value = "/accounts", method = RequestMethod.POST)
 	@ResponseStatus(HttpStatus.CREATED)
 	@ResponseBody
@@ -47,6 +56,11 @@ public class AccountController {
 		}
 	}
 
+	/**
+	 * 
+	 * @param id Account Id
+	 * @return
+	 */
 	@RequestMapping(value = "/accounts/{id}", method = RequestMethod.GET)
 	@ResponseStatus(HttpStatus.OK)
 	@ResponseBody
@@ -55,6 +69,11 @@ public class AccountController {
 		return searchedAccount;
 	}
 
+	/**
+	 * 
+	 * @param id Account Id
+	 * @return
+	 */
 	@RequestMapping(value = "/accounts/{id}", method = RequestMethod.DELETE)
 	@ResponseStatus(HttpStatus.ACCEPTED)
 	@ResponseBody
