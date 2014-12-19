@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.ComponentScan;
 
 /**
- * Inits an spring boot application
+ * Inits a spring boot application
  * 
  * @author Felipe Triana
  * @version 1.0

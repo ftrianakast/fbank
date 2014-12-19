@@ -1,4 +1,4 @@
-package co.fbank.utils.exceptions;
+package co.fbank.services.exceptions;
 
 /**
  * 

@@ -1,5 +1,7 @@
 package co.fbank.services;
 
+import java.math.BigDecimal;
+
 import co.fbank.model.MovementType;
 
 public interface BalanceValidator {
@@ -13,6 +15,6 @@ public interface BalanceValidator {
 	 * @param mvmType
 	 * @return
 	 */
-	public Boolean isNegativeBalanceGivenNewMovement(Double balance,
-			Double transferedMoney, MovementType mvmType);
+	public Boolean isNegativeBalanceGivenNewMovement(BigDecimal balance,
+			BigDecimal transferedMoney, MovementType mvmType);
 }

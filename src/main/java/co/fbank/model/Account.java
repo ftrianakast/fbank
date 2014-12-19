@@ -1,5 +1,6 @@
 package co.fbank.model;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -31,7 +32,7 @@ public class Account {
 	private Long number;
 
 	@Column
-	private Double balance;
+	private BigDecimal balance;
 
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy= "account")
 	@JsonManagedReference
@@ -49,7 +50,7 @@ public class Account {
 	 * @param balance
 	 * @param movements
 	 */
-	public Account(Long number, Double balance, List<Movement> movements,
+	public Account(Long number, BigDecimal balance, List<Movement> movements,
 			Client client) {
 		super();
 		this.number = number;
@@ -58,7 +59,7 @@ public class Account {
 		this.client = client;
 	}
 
-	public Account(Double balance, List<Movement> movements, Client client) {
+	public Account(BigDecimal balance, List<Movement> movements, Client client) {
 		super();
 		this.balance = balance;
 		this.movements = movements;
@@ -79,11 +80,11 @@ public class Account {
 		this.number = number;
 	}
 
-	public Double getBalance() {
+	public BigDecimal getBalance() {
 		return balance;
 	}
 
-	public void setBalance(Double balance) {
+	public void setBalance(BigDecimal balance) {
 		this.balance = balance;
 	}
 

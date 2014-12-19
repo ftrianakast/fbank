@@ -4,6 +4,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -32,14 +33,16 @@ public class ClientController {
 	 * @return
 	 */
 	@RequestMapping(value = "/clients", method = RequestMethod.POST)
-	@ResponseStatus(HttpStatus.CREATED)
 	@ResponseBody
-	public String addClient(@Valid @RequestBody Client client) {
+	public ResponseEntity<String> addClient(@Valid @RequestBody Client client) {
 		try {
 			clientRepository.save(client);
-			return "User succesfully added with id: " + client.getId();
+			return new ResponseEntity<String>(
+					"User succesfully added with id: " + client.getId(),
+					HttpStatus.CREATED);
 		} catch (Exception e) {
-			return "Error deleting the client:" + e.toString();
+			return new ResponseEntity<String>("Error deleting the client:"
+					+ e.toString(), HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
 
@@ -62,14 +65,16 @@ public class ClientController {
 	 * @return
 	 */
 	@RequestMapping(value = "/clients/{id}", method = RequestMethod.DELETE)
-	@ResponseStatus(HttpStatus.ACCEPTED)
 	@ResponseBody
-	public String deleteClient(@PathVariable Long id) {
+	public ResponseEntity<String> deleteClient(@PathVariable Long id) {
 		try {
 			clientRepository.delete(id);
-			return "User was successfully deleted";
+			return new ResponseEntity<String>("User was successfully deleted",
+					HttpStatus.ACCEPTED);
 		} catch (Exception e) {
-			return "Error deleting the client. Its probably that the required client doesn't not exist";
+			return new ResponseEntity<String>(
+					"Error deleting the client. Its probably that the required client doesn't not exist",
+					HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
 
@@ -82,9 +87,9 @@ public class ClientController {
 	 * @return
 	 */
 	@RequestMapping(value = "/clients/{id}", method = RequestMethod.PUT)
-	@ResponseStatus(HttpStatus.ACCEPTED)
 	@ResponseBody
-	public String updateClient(@PathVariable Long id, @RequestBody Client client) {
+	public ResponseEntity<String> updateClient(@PathVariable Long id,
+			@RequestBody Client client) {
 		try {
 			Client oldClient = clientRepository.findOne(id);
 			String response = "";
@@ -92,12 +97,16 @@ public class ClientController {
 				client.setId(oldClient.getId());
 				clientRepository.save(client);
 				response += "The client was updated with new information";
+				return new ResponseEntity<String>(response, HttpStatus.ACCEPTED);
 			} else {
 				response += "The client you want update doesn't exist";
+				return new ResponseEntity<String>(response,
+						HttpStatus.NOT_FOUND);
 			}
-			return response;
 		} catch (Exception e) {
-			return "There was an error updating the client";
+			return new ResponseEntity<String>(
+					"There was an error updating the client",
+					HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
 }

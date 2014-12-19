@@ -1,4 +1,6 @@
-package co.fbank.utils.exceptions;
+package co.fbank.services.exceptions;
+
+import java.math.BigDecimal;
 
 /**
  * 
@@ -7,11 +9,11 @@ package co.fbank.utils.exceptions;
  */
 @SuppressWarnings("serial")
 public class NegativeBalanceException extends Exception {
-	private Double negativeBalance;
+	private BigDecimal negativeBalance;
 	private String specificMessage;
 	private static final String message = "The balance produced by the movement is negative";
 
-	public NegativeBalanceException(Double negativeBalance) {
+	public NegativeBalanceException(BigDecimal negativeBalance) {
 		super(message);
 		this.negativeBalance = negativeBalance;
 		this.specificMessage = message + " with a balance of: "
@@ -19,11 +21,11 @@ public class NegativeBalanceException extends Exception {
 
 	}
 
-	public Double getNegativeBalance() {
+	public BigDecimal getNegativeBalance() {
 		return negativeBalance;
 	}
 
-	public void setNegativeBalance(Double negativeBalance) {
+	public void setNegativeBalance(BigDecimal negativeBalance) {
 		this.negativeBalance = negativeBalance;
 	}
 

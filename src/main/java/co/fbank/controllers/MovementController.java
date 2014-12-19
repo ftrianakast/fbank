@@ -21,8 +21,8 @@ import co.fbank.model.Movement;
 import co.fbank.persistence.AccountRepository;
 import co.fbank.persistence.MovementRepository;
 import co.fbank.services.AccountMovement;
-import co.fbank.utils.exceptions.MovementTypeNotAllowedException;
-import co.fbank.utils.exceptions.NegativeBalanceException;
+import co.fbank.services.exceptions.MovementTypeNotAllowedException;
+import co.fbank.services.exceptions.NegativeBalanceException;
 
 /**
  * @author Felipe Triana

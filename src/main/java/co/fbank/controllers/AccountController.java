@@ -1,22 +1,30 @@
 package co.fbank.controllers;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Date;
+
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
+import co.fbank.controllers.aux.ReportRequest;
 import co.fbank.model.Account;
 import co.fbank.model.Client;
 import co.fbank.model.Movement;
 import co.fbank.persistence.AccountRepository;
 import co.fbank.persistence.ClientRepository;
+import co.fbank.services.report.Report;
+import co.fbank.services.report.ReportGenerator;
 
 /**
  * @author Felipe Triana
@@ -30,35 +38,43 @@ public class AccountController {
 	@Autowired
 	private ClientRepository clientRepository;
 
+	@Autowired
+	private ReportGenerator reportGenerator;
+
 	/**
 	 * 
 	 * @param clientId
 	 * @return
 	 */
-	@RequestMapping(value = "/accounts", method = RequestMethod.POST)
-	@ResponseStatus(HttpStatus.CREATED)
+	@RequestMapping(value = "/clients/{clientId}/accounts", method = RequestMethod.POST)
 	@ResponseBody
-	public String addAccount(@RequestParam(required = true) Long clientId) {
+	public ResponseEntity<String> addAccount(@PathVariable Long clientId) {
 		try {
 			Client searchedClient = clientRepository.findOne(clientId);
 			if (searchedClient != null) {
-				Account account = new Account(0.0, new ArrayList<Movement>(),
-						searchedClient);
+				Account account = new Account(new BigDecimal(0.0),
+						new ArrayList<Movement>(), searchedClient);
 				searchedClient.getAccounts().add(account);
 				accountRepository.save(account);
-				return "The account was added correctly with a number: "
-						+ account.getNumber();
+				return new ResponseEntity<String>(
+						"The account was added correctly with a number: "
+								+ account.getNumber(), HttpStatus.CREATED);
 			} else {
-				return "You need to specify a valid client for add an account";
+				return new ResponseEntity<String>(
+						"You need to specify a valid client for add an account",
+						HttpStatus.BAD_REQUEST);
 			}
 		} catch (Exception e) {
-			return "There was an error adding the account" + e.getMessage();
+			return new ResponseEntity<String>(
+					"There was an error adding the account" + e.getMessage(),
+					HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
 
 	/**
 	 * 
-	 * @param id Account Id
+	 * @param id
+	 *            Account Id
 	 * @return
 	 */
 	@RequestMapping(value = "/accounts/{id}", method = RequestMethod.GET)
@@ -71,18 +87,43 @@ public class AccountController {
 
 	/**
 	 * 
-	 * @param id Account Id
+	 * @param id
+	 *            Account Id
 	 * @return
 	 */
 	@RequestMapping(value = "/accounts/{id}", method = RequestMethod.DELETE)
-	@ResponseStatus(HttpStatus.ACCEPTED)
 	@ResponseBody
-	public String deleteAccount(@PathVariable Long id) {
+	public ResponseEntity<String> deleteAccount(@PathVariable Long id) {
 		try {
 			accountRepository.delete(id);
-			return "The account was successfully removed";
+			return new ResponseEntity<String>(
+					"The account was successfully removed", HttpStatus.ACCEPTED);
 		} catch (Exception e) {
-			return "There was an error removing the account. Verify the account number, probably it doesn't exist";
+			return new ResponseEntity<String>(
+					"There was an error removing the account. Verify the account number, probably it doesn't exist",
+					HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
+
+	/**
+	 * It allows to generate a report of movements of a client inn multiple
+	 * accounts
+	 * 
+	 * @param accountId
+	 * @param reportRequest
+	 * @return
+	 */
+	@RequestMapping(value = "/accounts/{accountId}/reports", method = RequestMethod.POST)
+	@ResponseBody
+	public ResponseEntity<Report> generateReport(@PathVariable Long accountId,
+			@Valid @RequestBody ReportRequest reportRequest) {
+		Long clientId = reportRequest.getClientId();
+		Date initDate = reportRequest.getInitDate();
+		Date endDate = reportRequest.getEndDate();
+		Report report = reportGenerator.generateAccountsReport(initDate,
+				endDate, clientId);
+		return new ResponseEntity<Report>(report, HttpStatus.OK);
+
+	}
+
 }

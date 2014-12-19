@@ -1,4 +1,4 @@
-package co.fbank.services;
+package co.fbank.services.utils;
 
 /**
  * Generates random values for all kind of types

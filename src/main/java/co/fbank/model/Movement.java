@@ -1,5 +1,6 @@
 package co.fbank.model;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -29,7 +30,7 @@ public class Movement {
 	private Date date;
 
 	@Column(nullable = false)
-	private Double value;
+	private BigDecimal value;
 
 	@ManyToOne
 	@JoinColumn(name = "accountNumber")
@@ -43,7 +44,7 @@ public class Movement {
 	 * @param date
 	 * @param value
 	 */
-	public Movement(MovementType type, Date date, Double value) {
+	public Movement(MovementType type, Date date, BigDecimal value) {
 		super();
 		this.type = type;
 		this.date = date;
@@ -72,11 +73,11 @@ public class Movement {
 		this.date = date;
 	}
 
-	public Double getValue() {
+	public BigDecimal getValue() {
 		return value;
 	}
 
-	public void setValue(Double value) {
+	public void setValue(BigDecimal value) {
 		this.value = value;
 	}
 

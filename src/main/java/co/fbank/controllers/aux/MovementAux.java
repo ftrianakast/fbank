@@ -1,11 +1,12 @@
 package co.fbank.controllers.aux;
 
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.Optional;
 
 import co.fbank.model.Movement;
 import co.fbank.model.MovementType;
-import co.fbank.utils.Constants;
+import co.fbank.services.utils.Constants;
 
 /**
  * Defines an auxiliar object for building real movements form client requests
@@ -16,14 +17,14 @@ import co.fbank.utils.Constants;
 public class MovementAux {
 
 	private String type;
-	private Double value;
+	private BigDecimal value;
 
 	/**
 	 * 
 	 * @param type
 	 * @param value
 	 */
-	public MovementAux(String type, Double value) {
+	public MovementAux(String type, BigDecimal value) {
 		super();
 		this.type = type;
 		this.value = value;
@@ -66,11 +67,11 @@ public class MovementAux {
 		this.type = type;
 	}
 
-	public Double getValue() {
+	public BigDecimal getValue() {
 		return value;
 	}
 
-	public void setValue(Double value) {
+	public void setValue(BigDecimal value) {
 		this.value = value;
 	}
 }

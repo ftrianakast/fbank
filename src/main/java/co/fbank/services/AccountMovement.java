@@ -2,8 +2,8 @@ package co.fbank.services;
 
 import co.fbank.model.Account;
 import co.fbank.model.Movement;
-import co.fbank.utils.exceptions.MovementTypeNotAllowedException;
-import co.fbank.utils.exceptions.NegativeBalanceException;
+import co.fbank.services.exceptions.MovementTypeNotAllowedException;
+import co.fbank.services.exceptions.NegativeBalanceException;
 
 /**
  * Service that performs a transfer of money into|from an account

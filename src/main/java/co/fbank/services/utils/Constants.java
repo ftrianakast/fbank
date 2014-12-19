@@ -1,4 +1,4 @@
-package co.fbank.utils;
+package co.fbank.services.utils;
 
 import java.util.Arrays;
 import java.util.List;

@@ -1,5 +1,7 @@
 package co.fbank.services;
 
+import java.math.BigDecimal;
+
 import org.springframework.stereotype.Service;
 
 import co.fbank.model.MovementType;
@@ -8,11 +10,12 @@ import co.fbank.model.MovementType;
 public class BalanceValidatorImpl implements BalanceValidator {
 
 	@Override
-	public Boolean isNegativeBalanceGivenNewMovement(Double balance,
-			Double transferedMoney, MovementType mvmType) {
+	public Boolean isNegativeBalanceGivenNewMovement(BigDecimal balance,
+			BigDecimal transferedMoney, MovementType mvmType) {
 		Boolean negativeBalance = false;
 		if (mvmType.equals(MovementType.CREDIT)
-				&& (balance - transferedMoney) < 0) {
+				&& (balance.subtract(transferedMoney))
+						.compareTo(new BigDecimal(0)) == -1) {
 			negativeBalance = true;
 		}
 		return negativeBalance;
