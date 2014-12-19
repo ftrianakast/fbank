@@ -13,6 +13,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 /**
  * @author Felipe Triana
  * @version 1.0
@@ -23,6 +25,7 @@ public class Client {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "clientId")
 	private Long id;
 
 	@Column(nullable = false)
@@ -34,7 +37,8 @@ public class Client {
 	@Column(nullable = false)
 	private String phone;
 
-	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "client")
+	@JsonManagedReference
 	private List<Account> accounts;
 
 	/**
@@ -91,7 +95,7 @@ public class Client {
 	public void setAccounts(ArrayList<Account> accounts) {
 		this.accounts = accounts;
 	}
-	
+
 	public Long getId() {
 		return id;
 	}

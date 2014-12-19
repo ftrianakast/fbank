@@ -20,7 +20,6 @@ import co.fbank.persistence.ClientRepository;
 
 @Controller
 public class AccountController {
-
 	@Autowired
 	private AccountRepository accountRepository;
 
@@ -34,7 +33,8 @@ public class AccountController {
 		try {
 			Client searchedClient = clientRepository.findOne(clientId);
 			if (searchedClient != null) {
-				Account account = new Account(0.0, new ArrayList<Movement>());
+				Account account = new Account(0.0, new ArrayList<Movement>(),
+						searchedClient);
 				searchedClient.getAccounts().add(account);
 				accountRepository.save(account);
 				return "The account was added correctly with a number: "
@@ -48,6 +48,8 @@ public class AccountController {
 	}
 
 	@RequestMapping(value = "/accounts/{id}", method = RequestMethod.GET)
+	@ResponseStatus(HttpStatus.OK)
+	@ResponseBody
 	public Account getAccount(@PathVariable Long id) {
 		Account searchedAccount = accountRepository.findOne(id);
 		return searchedAccount;

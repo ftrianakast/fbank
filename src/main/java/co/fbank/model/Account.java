@@ -1,6 +1,5 @@
 package co.fbank.model;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -10,9 +9,13 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 /**
  * @author Felipe Triana
@@ -24,13 +27,20 @@ public class Account {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "accountNumber")
 	private Long number;
 
 	@Column
 	private Double balance;
 
-	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy= "account")
+	@JsonManagedReference
 	private List<Movement> movements;
+
+	@ManyToOne
+	@JoinColumn(name = "clientId")
+	@JsonBackReference
+	private Client client;
 
 	/**
 	 * Constructor
@@ -39,17 +49,20 @@ public class Account {
 	 * @param balance
 	 * @param movements
 	 */
-	public Account(Long number, Double balance, List<Movement> movements) {
+	public Account(Long number, Double balance, List<Movement> movements,
+			Client client) {
 		super();
 		this.number = number;
 		this.balance = balance;
 		this.movements = movements;
+		this.client = client;
 	}
 
-	public Account(Double balance, List<Movement> movements) {
+	public Account(Double balance, List<Movement> movements, Client client) {
 		super();
 		this.balance = balance;
 		this.movements = movements;
+		this.client = client;
 	}
 
 	/**
@@ -78,8 +91,16 @@ public class Account {
 		return movements;
 	}
 
-	public void setMovements(ArrayList<Movement> movements) {
+	public void setMovements(List<Movement> movements) {
 		this.movements = movements;
+	}
+
+	public Client getClient() {
+		return client;
+	}
+
+	public void setClient(Client client) {
+		this.client = client;
 	}
 
 	@Override
