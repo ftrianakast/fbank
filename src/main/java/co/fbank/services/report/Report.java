@@ -3,6 +3,10 @@ package co.fbank.services.report;
 import java.util.Date;
 import java.util.List;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
+import co.fbank.services.utils.JsonDateSerializer;
+
 /**
  * Represents the summary report
  * 
@@ -32,6 +36,7 @@ public class Report {
 
 	}
 
+	@JsonSerialize(using=JsonDateSerializer.class)
 	public Date getInitDate() {
 		return initDate;
 	}
@@ -40,6 +45,7 @@ public class Report {
 		this.initDate = initDate;
 	}
 
+	@JsonSerialize(using=JsonDateSerializer.class)
 	public Date getEndDate() {
 		return endDate;
 	}

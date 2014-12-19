@@ -2,29 +2,22 @@ package co.fbank.controllers;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.Date;
-
-import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-import co.fbank.controllers.aux.ReportRequest;
 import co.fbank.model.Account;
 import co.fbank.model.Client;
 import co.fbank.model.Movement;
 import co.fbank.persistence.AccountRepository;
 import co.fbank.persistence.ClientRepository;
-import co.fbank.services.report.Report;
-import co.fbank.services.report.ReportGenerator;
 
 /**
  * @author Felipe Triana
@@ -37,9 +30,6 @@ public class AccountController {
 
 	@Autowired
 	private ClientRepository clientRepository;
-
-	@Autowired
-	private ReportGenerator reportGenerator;
 
 	/**
 	 * 
@@ -103,27 +93,6 @@ public class AccountController {
 					"There was an error removing the account. Verify the account number, probably it doesn't exist",
 					HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-	}
-
-	/**
-	 * It allows to generate a report of movements of a client inn multiple
-	 * accounts
-	 * 
-	 * @param accountId
-	 * @param reportRequest
-	 * @return
-	 */
-	@RequestMapping(value = "/accounts/{accountId}/reports", method = RequestMethod.POST)
-	@ResponseBody
-	public ResponseEntity<Report> generateReport(@PathVariable Long accountId,
-			@Valid @RequestBody ReportRequest reportRequest) {
-		Long clientId = reportRequest.getClientId();
-		Date initDate = reportRequest.getInitDate();
-		Date endDate = reportRequest.getEndDate();
-		Report report = reportGenerator.generateAccountsReport(initDate,
-				endDate, clientId);
-		return new ResponseEntity<Report>(report, HttpStatus.OK);
-
 	}
 
 }

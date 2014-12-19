@@ -1,5 +1,7 @@
 package co.fbank.controllers;
 
+import java.util.Date;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,8 +15,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
+import co.fbank.controllers.aux.ReportRequest;
 import co.fbank.model.Client;
 import co.fbank.persistence.ClientRepository;
+import co.fbank.services.report.Report;
+import co.fbank.services.report.ReportGenerator;
 
 /**
  * 
@@ -27,6 +32,9 @@ public class ClientController {
 	@Autowired
 	private ClientRepository clientRepository;
 
+	@Autowired
+	private ReportGenerator reportGenerator;
+	
 	/**
 	 * 
 	 * @param client
@@ -108,5 +116,28 @@ public class ClientController {
 					"There was an error updating the client",
 					HttpStatus.INTERNAL_SERVER_ERROR);
 		}
+	}
+	
+	/**
+	 * It allows to generate a report of movements of a client inn multiple
+	 * accounts
+	 * 
+	 * @param accountId
+	 * @param reportRequest
+	 * @return
+	 */
+	@RequestMapping(value = "/clients/{clientId}/reports", method = RequestMethod.POST)
+	@ResponseBody
+	public ResponseEntity<Report> generateReport(@PathVariable Long clientId,
+			@Valid @RequestBody ReportRequest reportRequest) {
+		Date initDate = reportRequest.getInitDate();
+		Date endDate = reportRequest.getEndDate();
+		System.out.println("-------------------------------------------");
+		System.out.println(initDate);
+		System.out.println(endDate);
+		Report report = reportGenerator.generateAccountsReport(initDate,
+				endDate, clientId);
+		return new ResponseEntity<Report>(report, HttpStatus.OK);
+
 	}
 }

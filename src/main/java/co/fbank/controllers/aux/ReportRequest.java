@@ -2,6 +2,10 @@ package co.fbank.controllers.aux;
 
 import java.util.Date;
 
+import co.fbank.services.utils.JsonDateDeserializer;
+
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+
 /**
  * Represents an object request for the generation of a report
  * 
@@ -11,7 +15,6 @@ import java.util.Date;
 public class ReportRequest {
 	private Date initDate;
 	private Date endDate;
-	private Long clientId;
 
 	/**
 	 * Constructor
@@ -24,12 +27,12 @@ public class ReportRequest {
 		super();
 		this.initDate = initDate;
 		this.endDate = endDate;
-		this.clientId = clientId;
 	}
 
 	public ReportRequest() {
 	}
 
+	@JsonDeserialize(using = JsonDateDeserializer.class)
 	public Date getInitDate() {
 		return initDate;
 	}
@@ -38,19 +41,12 @@ public class ReportRequest {
 		this.initDate = initDate;
 	}
 
+	@JsonDeserialize(using = JsonDateDeserializer.class)
 	public Date getEndDate() {
 		return endDate;
 	}
 
 	public void setEndDate(Date endDate) {
 		this.endDate = endDate;
-	}
-
-	public Long getClientId() {
-		return clientId;
-	}
-
-	public void setClientId(Long clientId) {
-		this.clientId = clientId;
 	}
 }

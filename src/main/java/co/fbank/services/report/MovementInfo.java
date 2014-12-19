@@ -3,6 +3,10 @@ package co.fbank.services.report;
 import java.math.BigDecimal;
 import java.util.Date;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
+import co.fbank.services.utils.JsonDateSerializer;
+
 /**
  * Represents the movement info in a report
  * 
@@ -31,6 +35,7 @@ public class MovementInfo {
 		this.value = value;
 	}
 
+	@JsonSerialize(using=JsonDateSerializer.class)
 	public Date getDate() {
 		return date;
 	}

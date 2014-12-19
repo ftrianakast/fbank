@@ -11,7 +11,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import co.fbank.services.utils.JsonDateSerializer;
+
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 /**
  * @author Felipe Triana
@@ -65,6 +68,7 @@ public class Movement {
 		this.type = type;
 	}
 
+	@JsonSerialize(using=JsonDateSerializer.class)
 	public Date getDate() {
 		return date;
 	}
