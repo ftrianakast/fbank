@@ -33,7 +33,7 @@ public class Account {
 	@Column
 	private Double balance;
 
-	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy= "account")
+	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy= "account")
 	@JsonManagedReference
 	private List<Movement> movements;
 

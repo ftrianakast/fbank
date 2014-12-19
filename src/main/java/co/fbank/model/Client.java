@@ -37,7 +37,7 @@ public class Client {
 	@Column(nullable = false)
 	private String phone;
 
-	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "client")
+	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "client")
 	@JsonManagedReference
 	private List<Account> accounts;
 

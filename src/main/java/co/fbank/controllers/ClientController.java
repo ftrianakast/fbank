@@ -35,15 +35,15 @@ public class ClientController {
 			return "Error deleting the client:" + e.toString();
 		}
 	}
-	
+
 	@RequestMapping(value = "/clients/{id}", method = RequestMethod.GET)
 	@ResponseStatus(HttpStatus.OK)
 	@ResponseBody
-	public Client getClient(@PathVariable Long id){
+	public Client getClient(@PathVariable Long id) {
 		Client searchedClient = clientRepository.findOne(id);
 		return searchedClient;
 	}
-	
+
 	@RequestMapping(value = "/clients/{id}", method = RequestMethod.DELETE)
 	@ResponseStatus(HttpStatus.ACCEPTED)
 	@ResponseBody
@@ -53,6 +53,26 @@ public class ClientController {
 			return "User was successfully deleted";
 		} catch (Exception e) {
 			return "Error deleting the client. Its probably that the required client doesn't not exist";
+		}
+	}
+
+	@RequestMapping(value = "/clients/{id}", method = RequestMethod.PUT)
+	@ResponseStatus(HttpStatus.ACCEPTED)
+	@ResponseBody
+	public String updateClient(@PathVariable Long id, @RequestBody Client client) {
+		try {
+			Client oldClient = clientRepository.findOne(id);
+			String response = "";
+			if (oldClient != null) {
+				client.setId(oldClient.getId());
+				clientRepository.save(client);
+				response += "The client was updated with new information";
+			} else {
+				response += "The client you want update doesn't exist";
+			}
+			return response;
+		} catch (Exception e) {
+			return "There was an error updating the client";
 		}
 	}
 }
