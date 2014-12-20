@@ -6,11 +6,23 @@
 
 * [Resumen](#resumen)
 * [Herramientas y versiones](#herramientas-y-versiones)
-* [Diagrama entidad-relación](#diagrama-entidad-relación)
+* [Diagrama entidad-relación](#diagrama-de-entidad-relacion)
 * [Manual de usuario](#manual-de-usuario)
     - [Client Resource](#client-resource)
-        + [POST /clients](#post-/clients)
-        + [GET /clients/{clientId}](#get-/clients/{clientId})
+        + [POST /clients](#crear-cliente)
+        + [GET /clients/{clientId}](#obtener-cliente)
+        + [DELETE /clients/{clientId}](#borrar-cliente)
+        + [PUT /clients/{clientId}](#actualizar-cliente)    
+    - [Account Resource](#account-resource)
+        + [POST /clients/{clientId}/accounts](#crear-cuenta)
+        + [GET /accounts/{accountId}](#obtener-cuenta)
+        + [DELETE /accounts/{accountId}](#borrar-cuenta)
+    - [Movement Resource](#movement-resource)
+        + [POST /accounts/{accountNumber}/movements](#crear-movimiento)
+    - [Report Resource](#report-resource)
+        + [POST /clients/{clientId}/reports](#generar-reporte)
+             
+
 
 ## Resumen
 Los requerimientos del banco están construidos sobre una Arquitectura __REST__. Los servicios REST de dicha arquitectura están implementados utilizando Spring MVC. Se utilizan los verbos HTTP: __GET__, __POST__, __PUT__ y __DELETE__. Las modificaciones parciales de recursos con __PATCH__ no están contempladas. Se deja la implementación de __Hipermedia__ sobre dichos servicios para una iteración posterior.
@@ -28,9 +40,9 @@ Las siguientes son las herramientas utilizadas en las diferenctes actividades de
 
 ## Diagrama Entidad Relación
  
-![Diagrama de entidad-relación](https://raw.githubusercontent.com/ftrianakast/fbank/master/src/main/resources/other/fbank.png)
+![Diagrama de entidad relacion](https://raw.githubusercontent.com/ftrianakast/fbank/master/src/main/resources/other/fbank.png)
 
-## Manual de Usuurio
+## Manual de Usuario
 A continuación se exponen cada una de las entradas y salidas de cada uno de los requerimientos solicitados. Para consumir los servicios puede usar:
 
 - __Curl__
@@ -38,7 +50,10 @@ A continuación se exponen cada una de las entradas y salidas de cada uno de los
 
 ### Client Resource
 
-#### POST /clients
+#### Crear cliente
+
+#####__POST /clients__
+
 Permite crear clientes. Recibe por input un json con una representación válidad de un cliente como se muestra a continuación:
 
 __Request__:
@@ -56,7 +71,9 @@ __Response__:
     Http Status: 201 Created
     User succesfully added with id: 2
 
-#### GET /clients/{clientId}
+#### Obtener cliente
+##### __GET /clients/{clientId}__
+
 Retorna el cliente indicado con variable Path clientId. Ejemplo:
 
 __Request__:
@@ -74,7 +91,9 @@ __Response__:
         accounts: [0]
     }
 
-#### 4.1.3. PUT /clients/{clientId}
+#### Actualizar cliente
+##### __PUT /clients/{clientId}__
+
 Actualiza el cliente con el idea dado como variable path en la url. Por ejemplo a continuación se quiere cambiar la dirección del cliente anterior:
 
 __Request__:
@@ -93,14 +112,16 @@ __Response__:
     The client was updated with new information
 
 
-#### 4.1.4. DELETE /clients/{clientId}
+#### Borrar cliente
+##### DELETE /clients/{clientId}
 
 Borra un cliente con el id indicando. El borrado es en cascada, es decir que cuando se borra un cliente automáticamente se borran sus cuentas y por ende los movimientos de esas cuentas.
 
 
 ### 4.2. Account Resource:
 
-#### 4.2.1. POST /clients/{clientId}/accounts
+#### Crear cuenta
+##### POST /clients/{clientId}/accounts
 Le crea una cuenta a un cliente. La cuenta se crea automáticamente con un saldo de 0. Ocurre un poco distinto que con los bancos normales, en dónde para abrir una cuenta usted necesita de un saldo inicial.
 
 __Request__ (Sin cuerpo)
@@ -112,7 +133,8 @@ __Response__
     Http Status: 201 Created
     The account was added correctly with a number: 35
 
-#### 4.2.2. GET /accounts/{accountId}
+#### Obtener cuenta
+##### GET /accounts/{accountId}
 Obtiene la cuenta cuyo id es dado por parámetro
 
 __Request__
@@ -128,7 +150,8 @@ __Response__
         movements: [0]
     }
 
-#### 4.2.3. DELETE /accounts/{accountId}
+#### Borrar cuenta
+##### DELETE /accounts/{accountId}
 Borra la cuenta indicada por parámetro
 
 __Request__
@@ -142,9 +165,10 @@ __Response__
 
 __Nota__: La modificación de una cuenta directamente no tiene mucho sentido desde el punto de vista del negocio. El balance de una cuenta cambia por medio de sus movimientos. Por eso el método __PUT__ para este recurso no fue implementado.
     
-### 4.3. Movement Resource:
+### Movement Resource:
 
-#### 4.3.1. POST /accounts/{accountNumber}/movements
+#### Crear movimiento
+##### POST /accounts/{accountNumber}/movements
 Registra un movimiento sobre la cuenta cuyo número es indicado por parámetro. Por simplificación se muestra el path de éxito. Sin embargo también está contemplado el caso en que se quieran hacer créditos sobre una cuenta negativa. En este caso el servidor response con 500 y un mensaje indicando que no se puede hacer la transacción.
 
 __Request__
@@ -160,9 +184,9 @@ __Response__
     Http Status: 201 Created
     Your movement was performed and you have a new balance of: 350000
 
-### 4.4. Report Resource:
-
-#### 4.4.1. POST /clients/{clientId}/reports
+### Report Resource
+#### Generar reporte
+##### POST /clients/{clientId}/reports
 Se genera el reporte requerido sobre el cliente indicado. Este reporte muestra un resumen de los movimientos de un cliente sobre cada una de sus cuentas.
 
 __Request__
