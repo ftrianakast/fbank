@@ -1,5 +1,6 @@
 package co.fbank.services.report;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 /**
@@ -15,7 +16,8 @@ public class AccountInfo {
 	private Integer totalCreditMovements;
 	private List<MovementInfo> debitMovements;
 	private List<MovementInfo> creditMovements;
-
+	private BigDecimal balance;
+	
 	/**
 	 * Constructor
 	 * 
@@ -27,13 +29,14 @@ public class AccountInfo {
 	 */
 	public AccountInfo(Long accountNumber, Integer totalDebitMovements,
 			Integer totalCreditMovements, List<MovementInfo> debitMovements,
-			List<MovementInfo> creditMovements) {
+			List<MovementInfo> creditMovements, BigDecimal balance) {
 		super();
 		this.accountNumber = accountNumber;
 		this.totalDebitMovements = totalDebitMovements;
 		this.totalCreditMovements = totalCreditMovements;
 		this.debitMovements = debitMovements;
 		this.creditMovements = creditMovements;
+		this.balance = balance;
 	}
 
 	public AccountInfo() {
@@ -77,5 +80,13 @@ public class AccountInfo {
 
 	public void setCreditMovements(List<MovementInfo> creditMovements) {
 		this.creditMovements = creditMovements;
+	}
+
+	public BigDecimal getBalance() {
+		return balance;
+	}
+
+	public void setBalance(BigDecimal balance) {
+		this.balance = balance;
 	}
 }

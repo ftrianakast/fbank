@@ -18,13 +18,11 @@ public class MovementInfo {
 
 	private BigDecimal value;
 	private Date date;
-	private BigDecimal balance;
 
-	public MovementInfo(BigDecimal value, Date date, BigDecimal balance) {
+	public MovementInfo(BigDecimal value, Date date) {
 		super();
 		this.value = value;
 		this.date = date;
-		this.balance = balance;
 	}
 
 	public BigDecimal getValue() {
@@ -42,14 +40,6 @@ public class MovementInfo {
 
 	public void setDate(Date date) {
 		this.date = date;
-	}
-
-	public BigDecimal getBalance() {
-		return balance;
-	}
-
-	public void setBalance(BigDecimal balance) {
-		this.balance = balance;
 	}
 
 }

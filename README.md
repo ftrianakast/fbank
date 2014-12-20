@@ -2,10 +2,20 @@
 
 # PayULatam banco
 
-## 1. Resumen
+## Table of contents
+
+* [Resumen](#resumen)
+* [Herramientas y versiones](#herramientas-y-versiones)
+* [Diagrama entidad-relación](#diagrama-entidad-relación)
+* [Manual de usuario](#manual-de-usuario)
+    - [Client Resource](#client-resource)
+        + [POST /clients](#post-/clients)
+        + [GET /clients/{clientId}](#get-/clients/{clientId})
+
+## Resumen
 Los requerimientos del banco están construidos sobre una Arquitectura __REST__. Los servicios REST de dicha arquitectura están implementados utilizando Spring MVC. Se utilizan los verbos HTTP: __GET__, __POST__, __PUT__ y __DELETE__. Las modificaciones parciales de recursos con __PATCH__ no están contempladas. Se deja la implementación de __Hipermedia__ sobre dichos servicios para una iteración posterior.
 
-## 2. Herramientas y versiones
+## Herramientas y versiones
 
 Las siguientes son las herramientas utilizadas en las diferenctes actividades de desarrollo:
 
@@ -16,18 +26,19 @@ Las siguientes son las herramientas utilizadas en las diferenctes actividades de
 - __Spring Data JPA__: Se utiliza para el manejo de la persistencia. Facilita las operaciones y configuraciones de __repositorios__.
 - __PostgreSQL__: Se utiliza la versión __9.3.5__ de este motor de base datos relacionales.
 
-## 3. Diagrama Entidad Relación
+## Diagrama Entidad Relación
  
 ![Diagrama de entidad-relación](https://raw.githubusercontent.com/ftrianakast/fbank/master/src/main/resources/other/fbank.png)
 
-## 4. Manual de Usuurio
+## Manual de Usuurio
 A continuación se exponen cada una de las entradas y salidas de cada uno de los requerimientos solicitados. Para consumir los servicios puede usar:
 
 - __Curl__
 - __Cliente REST De Chrome__: Es una manera gráfica y fácil de enviar peticiones a servicios REST. Usted lo puede encontrar [acá][1].
 
-### 4.1. Client Resource:
-##### 4.1.1. POST /clients
+### Client Resource
+
+#### POST /clients
 Permite crear clientes. Recibe por input un json con una representación válidad de un cliente como se muestra a continuación:
 
 __Request__:
@@ -45,7 +56,7 @@ __Response__:
     Http Status: 201 Created
     User succesfully added with id: 2
 
-##### 4.1.2. GET /clients/{clientId}
+#### GET /clients/{clientId}
 Retorna el cliente indicado con variable Path clientId. Ejemplo:
 
 __Request__:
@@ -63,7 +74,7 @@ __Response__:
         accounts: [0]
     }
 
-##### 4.1.3. PUT /clients/{clientId}
+#### 4.1.3. PUT /clients/{clientId}
 Actualiza el cliente con el idea dado como variable path en la url. Por ejemplo a continuación se quiere cambiar la dirección del cliente anterior:
 
 __Request__:
@@ -89,7 +100,7 @@ Borra un cliente con el id indicando. El borrado es en cascada, es decir que cua
 
 ### 4.2. Account Resource:
 
-##### 4.2.1. POST /clients/{clientId}/accounts
+#### 4.2.1. POST /clients/{clientId}/accounts
 Le crea una cuenta a un cliente. La cuenta se crea automáticamente con un saldo de 0. Ocurre un poco distinto que con los bancos normales, en dónde para abrir una cuenta usted necesita de un saldo inicial.
 
 __Request__ (Sin cuerpo)
@@ -101,7 +112,7 @@ __Response__
     Http Status: 201 Created
     The account was added correctly with a number: 35
 
-##### 4.2.2. GET /accounts/{accountId}
+#### 4.2.2. GET /accounts/{accountId}
 Obtiene la cuenta cuyo id es dado por parámetro
 
 __Request__
@@ -117,7 +128,7 @@ __Response__
         movements: [0]
     }
 
-##### 4.2.3. DELETE /accounts/{accountId}
+#### 4.2.3. DELETE /accounts/{accountId}
 Borra la cuenta indicada por parámetro
 
 __Request__
@@ -133,7 +144,7 @@ __Nota__: La modificación de una cuenta directamente no tiene mucho sentido des
     
 ### 4.3. Movement Resource:
 
-##### 4.3.1. POST /accounts/{accountNumber}/movements
+#### 4.3.1. POST /accounts/{accountNumber}/movements
 Registra un movimiento sobre la cuenta cuyo número es indicado por parámetro. Por simplificación se muestra el path de éxito. Sin embargo también está contemplado el caso en que se quieran hacer créditos sobre una cuenta negativa. En este caso el servidor response con 500 y un mensaje indicando que no se puede hacer la transacción.
 
 __Request__
@@ -151,7 +162,7 @@ __Response__
 
 ### 4.4. Report Resource:
 
-##### 4.4.1. POST /clients/{clientId}/reports
+#### 4.4.1. POST /clients/{clientId}/reports
 Se genera el reporte requerido sobre el cliente indicado. Este reporte muestra un resumen de los movimientos de un cliente sobre cada una de sus cuentas.
 
 __Request__
@@ -188,7 +199,6 @@ __Response__
                 "accountNumber": 33,
                 "totalDebitMovements": 3,
                 "totalCreditMovements": 0,
-                "balance": 60001.00006,
                 "debitMovements": [
                     {
                         "value": 20000,
@@ -203,11 +213,10 @@ __Response__
                         "date": "19-12-2014 14:18:42"
                     }
                 ],
-                "creditMovements": []
+                "creditMovements": [],
+                "balance": 60001.00006
             }
         ],
         "initDate": "19-12-2014 12:00:00",
         "endDate": "19-12-2014 20:00:00"
     }
-    
-    

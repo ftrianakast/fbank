@@ -63,6 +63,7 @@ public class ReportGeneratorImpl implements ReportGenerator {
 				.getCreditMovements().size());
 		accountReport.setTotalDebitMovements(accountReport.getDebitMovements()
 				.size());
+		accountReport.setBalance(account.getBalance());
 
 		return accountReport;
 	}
@@ -97,7 +98,7 @@ public class ReportGeneratorImpl implements ReportGenerator {
 	 */
 	private MovementInfo produceMovementInfo(Movement movement) {
 		MovementInfo movementReport = new MovementInfo(movement.getValue(),
-				movement.getDate(), movement.getAccount().getBalance());
+				movement.getDate());
 		return movementReport;
 	}
 }
