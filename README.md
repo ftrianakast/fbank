@@ -10,7 +10,6 @@
 * [Diagrama entidad-relación](#diagrama-de-entidad-relacion)
 * [Despliegue](#despliegue)
     - [Parametrización de la base de datos](#parametrizacion-de-la-base-de-datos) 
-    - [DDL Script](#ddl-script)
     - [Probar el proyecto en eclipse](#probar-el-proyecto-en-eclipse)
     - [Probar el proyecto como un jar ejecutable](#probar-el-proyecto-como-un-jar-ejecutable)
     - [Probar el proyecto con Docker](probar-el-proyecto-con-docker)
@@ -70,8 +69,7 @@ La base de datos debe ser configurada siguiendo el archivo sobre __fbank/src/mai
     spring.jpa.hibernate.dialect = org.hibernate.dialect.PostgreSQLDialect
     spring.jpa.hibernate.naming_strategy = org.hibernate.cfg.ImprovedNamingStrategy
 
-### DDL Script
-Aunque no es necesario porque Spring Data JPA viene configurado para la autogeneración, a continuación se provee dicho script
+No es necesario un Script de creación de base de datos dado que el ddl es autogenerado.
 
 ### Probar el proyecto en Eclipse
 Clone el proyecto, e importelo como un Maven Project. Corra la clase __co/fbank/Application.java__ como una aplicación Standalone. De inmediato se levanta el servidor embebido Tomcat y ya puede probar los servicios REST. Esta ejecución simple es gracias a Spring Boot
