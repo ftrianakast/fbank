@@ -1,5 +1,5 @@
 [1]: https://chrome.google.com/webstore/detail/advanced-rest-client/hgmloofddffdnphfgcellkdfbfbjeloo
-[2]: https://github.com/ftrianakast/fbank/blob/master/target/fbank-0.1.0.jar
+[2]: https://raw.githubusercontent.com/ftrianakast/fbank/master/target/fbank-0.1.0.jar
 
 # PayULatam banco
 
