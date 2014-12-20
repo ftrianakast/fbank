@@ -1,4 +1,5 @@
 [1]: https://chrome.google.com/webstore/detail/advanced-rest-client/hgmloofddffdnphfgcellkdfbfbjeloo
+[2]: https://github.com/ftrianakast/fbank/blob/master/target/fbank-0.1.0.jar
 
 # PayULatam banco
 
@@ -76,7 +77,10 @@ Aunque no es necesario porque Spring Data JPA viene configurado para la autogene
 Clone el proyecto, e importelo como un Maven Project. Corra la clase __co/fbank/Application.java__ como una aplicación Standalone. De inmediato se levanta el servidor embebido Tomcat y ya puede probar los servicios REST. Esta ejecución simple es gracias a Spring Boot
 
 ### Probar el proyecto como un jar ejecutable
-En __/src/main/resources__ usted puede encontrar un jar ejecutable llamado __fbank.jar__. Ejecute el jar con el siguiente comando:
+Descargue el jar [__fbank-0.1.0.jar__][2]. Ejecute el jar con el siguiente comando. Antes asegurese de tener instalado _JDK_1.8_ 
+
+    java -jar fbank-0.1.0.jar
+
 
 ### Probar el proyecto con docker
 Esta es la opción más viable. SIn embargo queda para iteraciones posteriores.
