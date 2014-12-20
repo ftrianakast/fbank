@@ -7,6 +7,12 @@
 * [Resumen](#resumen)
 * [Herramientas y versiones](#herramientas-y-versiones)
 * [Diagrama entidad-relación](#diagrama-de-entidad-relacion)
+* [Despliegue](#despliegue)
+    - [Parametrización de la base de datos](#parametrizacion-de-la-base-de-datos) 
+    - [DDL Script](#ddl-script)
+    - [Probar el proyecto en eclipse](#probar-el-proyecto-en-eclipse)
+    - [Probar el proyecto como un jar ejecutable](#probar-el-proyecto-como-un-jar-ejecutable)
+    - [Probar el proyecto con Docker](probar-el-proyecto-con-docker)
 * [Manual de usuario](#manual-de-usuario)
     - [Client Resource](#client-resource)
         + [POST /clients](#crear-cliente)
@@ -22,7 +28,6 @@
     - [Report Resource](#report-resource)
         + [POST /clients/{clientId}/reports](#generar-reporte)
              
-
 
 ## Resumen
 Los requerimientos del banco están construidos sobre una Arquitectura __REST__. Los servicios REST de dicha arquitectura están implementados utilizando Spring MVC. Se utilizan los verbos HTTP: __GET__, __POST__, __PUT__ y __DELETE__. Las modificaciones parciales de recursos con __PATCH__ no están contempladas. Se deja la implementación de __Hipermedia__ sobre dichos servicios para una iteración posterior.
@@ -41,6 +46,41 @@ Las siguientes son las herramientas utilizadas en las diferenctes actividades de
 ## Diagrama Entidad Relación
  
 ![Diagrama de entidad relacion](https://raw.githubusercontent.com/ftrianakast/fbank/master/src/main/resources/other/fbank.png)
+
+
+## Despliegue
+
+### Parametrizacion de la base de datos
+La base de datos debe ser configurada siguiendo el archivo sobre __fbank/src/main/resources/application.properties__. El archivo define la siguiente parametrización para la base de datos:
+
+    spring.datasource.url = jdbc:postgresql://localhost:5432/fbank
+    spring.datasource.username = postgres
+    spring.datasource.password = postgres
+    spring.datasource.driverClassName = org.postgresql.Driver
+    
+    # Specify the DBMS
+    spring.jpa.database = POSTGRESQL
+    
+    # Show or not log for each sql query
+    spring.jpa.show-sql = true
+    
+    # Hibernate settings are prefixed with spring.jpa.hibernate.*
+    spring.jpa.hibernate.ddl-auto = update
+    spring.jpa.hibernate.dialect = org.hibernate.dialect.PostgreSQLDialect
+    spring.jpa.hibernate.naming_strategy = org.hibernate.cfg.ImprovedNamingStrategy
+
+### DDL Script
+Aunque no es necesario porque Spring Data JPA viene configurado para la autogeneración, a continuación se provee dicho script
+
+### Probar el proyecto en Eclipse
+Clone el proyecto, e importelo como un Maven Project. Corra la clase __co/fbank/Application.java__ como una aplicación Standalone. De inmediato se levanta el servidor embebido Tomcat y ya puede probar los servicios REST. Esta ejecución simple es gracias a Spring Boot
+
+### Probar el proyecto como un jar ejecutable
+En __/src/main/resources__ usted puede encontrar un jar ejecutable llamado __fbank.jar__. Ejecute el jar con el siguiente comando:
+
+### Probar el proyecto con docker
+Esta es la opción más viable. SIn embargo queda para iteraciones posteriores.
+
 
 ## Manual de Usuario
 A continuación se exponen cada una de las entradas y salidas de cada uno de los requerimientos solicitados. Para consumir los servicios puede usar:
@@ -190,6 +230,8 @@ __Response__
 Se genera el reporte requerido sobre el cliente indicado. Este reporte muestra un resumen de los movimientos de un cliente sobre cada una de sus cuentas.
 
 __Request__
+
+Tener en cuenta que las  fechas siempre tienen el formato __dd-MM-yy HH:mm:ss__
 
     POST /clients/2/reports
     
