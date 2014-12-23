@@ -1,0 +1,11 @@
+div.modal-header
+	h3.modal-title Agregue una cuenta a este cliente
+div.modal-body
+	form
+		div.form-group
+			label Saldo:
+			input.form-control(placeholder="Ponga el saldo inicial de la cuenta", ng-model="initBalance")
+
+div.modal-footer
+	button.btn.btn-success(ng-click="addAccount()") Registrar
+	button.btn.btn-default(ng-click="cancel()") Cancelar

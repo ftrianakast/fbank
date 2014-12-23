@@ -1,0 +1,17 @@
+div.modal-header
+	h3.modal-title Agregue un cliente
+div.modal-body
+	form
+		div.form-group
+			label Nombre:
+			input.form-control(placeholder="Registre un nombre", ng-model="user.name")
+		div.form-group
+			label Dirección:
+			input.form-control(placeholder="Registre una dirección", ng-model="user.address")
+		div.form-group
+			label Teléfono:
+			input.form-control(placeholder="Registre un teléfono", ng-model= "user.phone")
+
+div.modal-footer
+	button.btn.btn-success(ng-click="register()") Registrar
+	button.btn.btn-default(ng-click="cancel()") Cancelar

@@ -1,0 +1,41 @@
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container">
+    <div class="nav-header"><a href="#/" class="navbar-brand">Fbank</a></div>
+  </div>
+</nav>
+<div class="container">
+  <div class="jumbotron">
+    <h1>Administración de cuentas de un cliente</h1>
+    <p>Edite la cuenta del cliente: {{ client.name }}</p>
+  </div>
+  <table class="table">
+    <caption>Aquí puede ver las cuentas del cliente {{ client.name }}</caption>
+    <thead>
+      <tr>
+        <th>Account Number</th>
+        <th>Balance</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="account in accounts">
+        <th>{{ account.number || $index + 1 }}</th>
+        <th>{{ account.balance }}</th>
+        <th>
+          <button ng-click="seeMovements()" class="btn btn-info btn-sm">Ver movimientos</button>
+        </th>
+        <th>
+          <button ng-click="registerMovement('sm', account)" class="btn btn-success btn-sm">Registrar un movimiento</button>
+        </th>
+        <th> 
+          <button ng-click="deleteAccount('sm', account)" class="btn btn-danger btn-sm">Borrar	</button>
+        </th>
+      </tr>
+    </tbody>
+  </table>
+  <div id="alert-2" flash-alert="success" active-class="in" style="margin-top: 30px" class="alert fade"><span class="alert-message">{{ flash.message }}</span></div>
+  <div style="margin-bottom: 30px"><a ng-href="#/" style="margin-right: 30px" class="btn btn-default btn-lg">Volver atrás	</a>
+    <button ng-click="addAccount('sm')" class="btn btn-lg btn-success">Add account</button>
+  </div>
+</div>

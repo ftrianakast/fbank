@@ -1,0 +1,17 @@
+div.modal-header
+	h3.modal-title Agregue un movimiento a esta cuenta
+div.modal-body
+	form
+		div.form-group
+			label Tipo:
+			input(type="radio", ng-model="movement.type", value="CREDIT")
+			| Crédito
+			input(type="radio", ng-model="movement.type", value="DEBIT")
+			| Débito
+		div.form-group
+			label Valor:
+			input.form-control(placeholder="Registre el valor de la transacción", ng-model="movement.value")
+
+div.modal-footer
+	button.btn.btn-success(ng-click="register()") Registrar
+	button.btn.btn-default(ng-click="cancel()") Cancelar

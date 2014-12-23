@@ -1,0 +1,431 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/bin/node',
+1 verbose cli   '/usr/bin/npm',
+1 verbose cli   'install',
+1 verbose cli   'angular,',
+1 verbose cli   'angular-route,',
+1 verbose cli   'bootstrap,',
+1 verbose cli   'gulp,',
+1 verbose cli   'gulp-jade,',
+1 verbose cli   'gulp-stylus',
+1 verbose cli   '--save' ]
+2 info using npm@1.4.28
+3 info using node@v0.10.33
+4 verbose node symlink /usr/bin/node
+5 verbose readDependencies using package.json deps
+6 verbose cache add [ 'angular,', null ]
+7 verbose cache add name=undefined spec="angular," args=["angular,",null]
+8 verbose parsed url { protocol: null,
+8 verbose parsed url   slashes: null,
+8 verbose parsed url   auth: null,
+8 verbose parsed url   host: null,
+8 verbose parsed url   port: null,
+8 verbose parsed url   hostname: null,
+8 verbose parsed url   hash: null,
+8 verbose parsed url   search: null,
+8 verbose parsed url   query: null,
+8 verbose parsed url   pathname: 'angular,',
+8 verbose parsed url   path: 'angular,',
+8 verbose parsed url   href: 'angular,' }
+9 verbose cache add [ 'angular-route,', null ]
+10 verbose cache add name=undefined spec="angular-route," args=["angular-route,",null]
+11 verbose parsed url { protocol: null,
+11 verbose parsed url   slashes: null,
+11 verbose parsed url   auth: null,
+11 verbose parsed url   host: null,
+11 verbose parsed url   port: null,
+11 verbose parsed url   hostname: null,
+11 verbose parsed url   hash: null,
+11 verbose parsed url   search: null,
+11 verbose parsed url   query: null,
+11 verbose parsed url   pathname: 'angular-route,',
+11 verbose parsed url   path: 'angular-route,',
+11 verbose parsed url   href: 'angular-route,' }
+12 verbose cache add [ 'bootstrap,', null ]
+13 verbose cache add name=undefined spec="bootstrap," args=["bootstrap,",null]
+14 verbose parsed url { protocol: null,
+14 verbose parsed url   slashes: null,
+14 verbose parsed url   auth: null,
+14 verbose parsed url   host: null,
+14 verbose parsed url   port: null,
+14 verbose parsed url   hostname: null,
+14 verbose parsed url   hash: null,
+14 verbose parsed url   search: null,
+14 verbose parsed url   query: null,
+14 verbose parsed url   pathname: 'bootstrap,',
+14 verbose parsed url   path: 'bootstrap,',
+14 verbose parsed url   href: 'bootstrap,' }
+15 verbose cache add [ 'gulp,', null ]
+16 verbose cache add name=undefined spec="gulp," args=["gulp,",null]
+17 verbose parsed url { protocol: null,
+17 verbose parsed url   slashes: null,
+17 verbose parsed url   auth: null,
+17 verbose parsed url   host: null,
+17 verbose parsed url   port: null,
+17 verbose parsed url   hostname: null,
+17 verbose parsed url   hash: null,
+17 verbose parsed url   search: null,
+17 verbose parsed url   query: null,
+17 verbose parsed url   pathname: 'gulp,',
+17 verbose parsed url   path: 'gulp,',
+17 verbose parsed url   href: 'gulp,' }
+18 verbose cache add [ 'gulp-jade,', null ]
+19 verbose cache add name=undefined spec="gulp-jade," args=["gulp-jade,",null]
+20 verbose parsed url { protocol: null,
+20 verbose parsed url   slashes: null,
+20 verbose parsed url   auth: null,
+20 verbose parsed url   host: null,
+20 verbose parsed url   port: null,
+20 verbose parsed url   hostname: null,
+20 verbose parsed url   hash: null,
+20 verbose parsed url   search: null,
+20 verbose parsed url   query: null,
+20 verbose parsed url   pathname: 'gulp-jade,',
+20 verbose parsed url   path: 'gulp-jade,',
+20 verbose parsed url   href: 'gulp-jade,' }
+21 verbose cache add [ 'gulp-stylus', null ]
+22 verbose cache add name=undefined spec="gulp-stylus" args=["gulp-stylus",null]
+23 verbose parsed url { protocol: null,
+23 verbose parsed url   slashes: null,
+23 verbose parsed url   auth: null,
+23 verbose parsed url   host: null,
+23 verbose parsed url   port: null,
+23 verbose parsed url   hostname: null,
+23 verbose parsed url   hash: null,
+23 verbose parsed url   search: null,
+23 verbose parsed url   query: null,
+23 verbose parsed url   pathname: 'gulp-stylus',
+23 verbose parsed url   path: 'gulp-stylus',
+23 verbose parsed url   href: 'gulp-stylus' }
+24 silly lockFile 955554c1-angular angular,
+25 verbose lock angular, /home/felipe/.npm/955554c1-angular.lock
+26 silly lockFile 2da79fe6-angular-route angular-route,
+27 verbose lock angular-route, /home/felipe/.npm/2da79fe6-angular-route.lock
+28 silly lockFile af7ea438-bootstrap bootstrap,
+29 verbose lock bootstrap, /home/felipe/.npm/af7ea438-bootstrap.lock
+30 silly lockFile e66a0b4e-gulp gulp,
+31 verbose lock gulp, /home/felipe/.npm/e66a0b4e-gulp.lock
+32 silly lockFile 26555cdd-gulp-jade gulp-jade,
+33 verbose lock gulp-jade, /home/felipe/.npm/26555cdd-gulp-jade.lock
+34 silly lockFile edf56ce6-gulp-stylus gulp-stylus
+35 verbose lock gulp-stylus /home/felipe/.npm/edf56ce6-gulp-stylus.lock
+36 silly lockFile 955554c1-angular angular,
+37 silly lockFile 955554c1-angular angular,
+38 silly lockFile 2da79fe6-angular-route angular-route,
+39 silly lockFile 2da79fe6-angular-route angular-route,
+40 silly lockFile af7ea438-bootstrap bootstrap,
+41 silly lockFile af7ea438-bootstrap bootstrap,
+42 silly lockFile e66a0b4e-gulp gulp,
+43 silly lockFile e66a0b4e-gulp gulp,
+44 silly lockFile 26555cdd-gulp-jade gulp-jade,
+45 silly lockFile 26555cdd-gulp-jade gulp-jade,
+46 silly lockFile edf56ce6-gulp-stylus gulp-stylus
+47 silly lockFile edf56ce6-gulp-stylus gulp-stylus
+48 verbose addNamed [ 'angular,', '' ]
+49 verbose addNamed [ null, '*' ]
+50 silly lockFile 44eff0da-angular angular,@
+51 verbose lock angular,@ /home/felipe/.npm/44eff0da-angular.lock
+52 verbose addNamed [ 'angular-route,', '' ]
+53 verbose addNamed [ null, '*' ]
+54 silly lockFile 03d3c882-angular-route angular-route,@
+55 verbose lock angular-route,@ /home/felipe/.npm/03d3c882-angular-route.lock
+56 verbose addNamed [ 'bootstrap,', '' ]
+57 verbose addNamed [ null, '*' ]
+58 silly lockFile 28236040-bootstrap bootstrap,@
+59 verbose lock bootstrap,@ /home/felipe/.npm/28236040-bootstrap.lock
+60 verbose addNamed [ 'gulp,', '' ]
+61 verbose addNamed [ null, '*' ]
+62 silly lockFile e1e800a2-gulp gulp,@
+63 verbose lock gulp,@ /home/felipe/.npm/e1e800a2-gulp.lock
+64 verbose addNamed [ 'gulp-jade,', '' ]
+65 verbose addNamed [ null, '*' ]
+66 silly lockFile 6fef7097-gulp-jade gulp-jade,@
+67 verbose lock gulp-jade,@ /home/felipe/.npm/6fef7097-gulp-jade.lock
+68 verbose addNamed [ 'gulp-stylus', '' ]
+69 verbose addNamed [ null, '*' ]
+70 silly lockFile a924a3a8-gulp-stylus gulp-stylus@
+71 verbose lock gulp-stylus@ /home/felipe/.npm/a924a3a8-gulp-stylus.lock
+72 silly addNameRange { name: 'angular,', range: '*', hasData: false }
+73 silly addNameRange { name: 'angular-route,', range: '*', hasData: false }
+74 silly addNameRange { name: 'bootstrap,', range: '*', hasData: false }
+75 silly addNameRange { name: 'gulp,', range: '*', hasData: false }
+76 silly addNameRange { name: 'gulp-jade,', range: '*', hasData: false }
+77 verbose request where is /angular,
+78 verbose request registry https://registry.npmjs.org/
+79 verbose request id 92cfacd13b23801c
+80 verbose url raw /angular,
+81 verbose url resolving [ 'https://registry.npmjs.org/', './angular%2C' ]
+82 verbose url resolved https://registry.npmjs.org/angular%2C
+83 verbose request where is https://registry.npmjs.org/angular%2C
+84 info trying registry request attempt 1 at 22:07:46
+85 http GET https://registry.npmjs.org/angular%2C
+86 verbose request where is /angular-route,
+87 verbose request registry https://registry.npmjs.org/
+88 verbose url raw /angular-route,
+89 verbose url resolving [ 'https://registry.npmjs.org/', './angular-route%2C' ]
+90 verbose url resolved https://registry.npmjs.org/angular-route%2C
+91 verbose request where is https://registry.npmjs.org/angular-route%2C
+92 info trying registry request attempt 1 at 22:07:46
+93 http GET https://registry.npmjs.org/angular-route%2C
+94 verbose request where is /bootstrap,
+95 verbose request registry https://registry.npmjs.org/
+96 verbose url raw /bootstrap,
+97 verbose url resolving [ 'https://registry.npmjs.org/', './bootstrap%2C' ]
+98 verbose url resolved https://registry.npmjs.org/bootstrap%2C
+99 verbose request where is https://registry.npmjs.org/bootstrap%2C
+100 info trying registry request attempt 1 at 22:07:46
+101 http GET https://registry.npmjs.org/bootstrap%2C
+102 verbose request where is /gulp,
+103 verbose request registry https://registry.npmjs.org/
+104 verbose url raw /gulp,
+105 verbose url resolving [ 'https://registry.npmjs.org/', './gulp%2C' ]
+106 verbose url resolved https://registry.npmjs.org/gulp%2C
+107 verbose request where is https://registry.npmjs.org/gulp%2C
+108 info trying registry request attempt 1 at 22:07:46
+109 http GET https://registry.npmjs.org/gulp%2C
+110 silly addNameRange { name: 'gulp-stylus', range: '*', hasData: false }
+111 verbose request where is /gulp-jade,
+112 verbose request registry https://registry.npmjs.org/
+113 verbose url raw /gulp-jade,
+114 verbose url resolving [ 'https://registry.npmjs.org/', './gulp-jade%2C' ]
+115 verbose url resolved https://registry.npmjs.org/gulp-jade%2C
+116 verbose request where is https://registry.npmjs.org/gulp-jade%2C
+117 info trying registry request attempt 1 at 22:07:46
+118 http GET https://registry.npmjs.org/gulp-jade%2C
+119 verbose request where is /gulp-stylus
+120 verbose request registry https://registry.npmjs.org/
+121 verbose url raw /gulp-stylus
+122 verbose url resolving [ 'https://registry.npmjs.org/', './gulp-stylus' ]
+123 verbose url resolved https://registry.npmjs.org/gulp-stylus
+124 verbose request where is https://registry.npmjs.org/gulp-stylus
+125 info trying registry request attempt 1 at 22:07:46
+126 verbose etag "1VGVDM8IGY5WGPFFGDE8GI9IT"
+127 http GET https://registry.npmjs.org/gulp-stylus
+128 http 404 https://registry.npmjs.org/angular%2C
+129 verbose headers { date: 'Tue, 23 Dec 2014 03:07:47 GMT',
+129 verbose headers   server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+129 verbose headers   'content-type': 'application/json',
+129 verbose headers   'cache-control': 'max-age=0',
+129 verbose headers   'content-length': '52',
+129 verbose headers   'accept-ranges': 'bytes',
+129 verbose headers   via: '1.1 varnish',
+129 verbose headers   age: '0',
+129 verbose headers   'x-served-by': 'cache-jfk1020-JFK',
+129 verbose headers   'x-cache': 'MISS',
+129 verbose headers   'x-cache-hits': '0',
+129 verbose headers   'x-timer': 'S1419304067.212402,VS0,VE19',
+129 verbose headers   'keep-alive': 'timeout=10, max=50',
+129 verbose headers   connection: 'Keep-Alive' }
+130 silly registry.get cb [ 404,
+130 silly registry.get   { date: 'Tue, 23 Dec 2014 03:07:47 GMT',
+130 silly registry.get     server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+130 silly registry.get     'content-type': 'application/json',
+130 silly registry.get     'cache-control': 'max-age=0',
+130 silly registry.get     'content-length': '52',
+130 silly registry.get     'accept-ranges': 'bytes',
+130 silly registry.get     via: '1.1 varnish',
+130 silly registry.get     age: '0',
+130 silly registry.get     'x-served-by': 'cache-jfk1020-JFK',
+130 silly registry.get     'x-cache': 'MISS',
+130 silly registry.get     'x-cache-hits': '0',
+130 silly registry.get     'x-timer': 'S1419304067.212402,VS0,VE19',
+130 silly registry.get     'keep-alive': 'timeout=10, max=50',
+130 silly registry.get     connection: 'Keep-Alive' } ]
+131 silly lockFile 44eff0da-angular angular,@
+132 silly lockFile 44eff0da-angular angular,@
+133 http 404 https://registry.npmjs.org/gulp%2C
+134 verbose headers { date: 'Tue, 23 Dec 2014 03:07:47 GMT',
+134 verbose headers   server: 'CouchDB/1.5.0 (Erlang OTP/R14B04)',
+134 verbose headers   'content-type': 'application/json',
+134 verbose headers   'cache-control': 'max-age=0',
+134 verbose headers   'content-length': '52',
+134 verbose headers   'accept-ranges': 'bytes',
+134 verbose headers   via: '1.1 varnish',
+134 verbose headers   age: '0',
+134 verbose headers   'x-served-by': 'cache-jfk1023-JFK',
+134 verbose headers   'x-cache': 'MISS',
+134 verbose headers   'x-cache-hits': '0',
+134 verbose headers   'x-timer': 'S1419304067.228495,VS0,VE25',
+134 verbose headers   'keep-alive': 'timeout=10, max=50',
+134 verbose headers   connection: 'Keep-Alive' }
+135 silly registry.get cb [ 404,
+135 silly registry.get   { date: 'Tue, 23 Dec 2014 03:07:47 GMT',
+135 silly registry.get     server: 'CouchDB/1.5.0 (Erlang OTP/R14B04)',
+135 silly registry.get     'content-type': 'application/json',
+135 silly registry.get     'cache-control': 'max-age=0',
+135 silly registry.get     'content-length': '52',
+135 silly registry.get     'accept-ranges': 'bytes',
+135 silly registry.get     via: '1.1 varnish',
+135 silly registry.get     age: '0',
+135 silly registry.get     'x-served-by': 'cache-jfk1023-JFK',
+135 silly registry.get     'x-cache': 'MISS',
+135 silly registry.get     'x-cache-hits': '0',
+135 silly registry.get     'x-timer': 'S1419304067.228495,VS0,VE25',
+135 silly registry.get     'keep-alive': 'timeout=10, max=50',
+135 silly registry.get     connection: 'Keep-Alive' } ]
+136 silly lockFile e1e800a2-gulp gulp,@
+137 silly lockFile e1e800a2-gulp gulp,@
+138 http 404 https://registry.npmjs.org/angular-route%2C
+139 verbose headers { date: 'Tue, 23 Dec 2014 03:07:47 GMT',
+139 verbose headers   server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+139 verbose headers   'content-type': 'application/json',
+139 verbose headers   'cache-control': 'max-age=0',
+139 verbose headers   'content-length': '52',
+139 verbose headers   'accept-ranges': 'bytes',
+139 verbose headers   via: '1.1 varnish',
+139 verbose headers   age: '0',
+139 verbose headers   'x-served-by': 'cache-jfk1022-JFK',
+139 verbose headers   'x-cache': 'MISS',
+139 verbose headers   'x-cache-hits': '0',
+139 verbose headers   'x-timer': 'S1419304067.261181,VS0,VE15',
+139 verbose headers   'keep-alive': 'timeout=10, max=50',
+139 verbose headers   connection: 'Keep-Alive' }
+140 silly registry.get cb [ 404,
+140 silly registry.get   { date: 'Tue, 23 Dec 2014 03:07:47 GMT',
+140 silly registry.get     server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+140 silly registry.get     'content-type': 'application/json',
+140 silly registry.get     'cache-control': 'max-age=0',
+140 silly registry.get     'content-length': '52',
+140 silly registry.get     'accept-ranges': 'bytes',
+140 silly registry.get     via: '1.1 varnish',
+140 silly registry.get     age: '0',
+140 silly registry.get     'x-served-by': 'cache-jfk1022-JFK',
+140 silly registry.get     'x-cache': 'MISS',
+140 silly registry.get     'x-cache-hits': '0',
+140 silly registry.get     'x-timer': 'S1419304067.261181,VS0,VE15',
+140 silly registry.get     'keep-alive': 'timeout=10, max=50',
+140 silly registry.get     connection: 'Keep-Alive' } ]
+141 silly lockFile 03d3c882-angular-route angular-route,@
+142 silly lockFile 03d3c882-angular-route angular-route,@
+143 http 404 https://registry.npmjs.org/gulp-jade%2C
+144 verbose headers { date: 'Tue, 23 Dec 2014 03:07:47 GMT',
+144 verbose headers   server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+144 verbose headers   'content-type': 'application/json',
+144 verbose headers   'cache-control': 'max-age=0',
+144 verbose headers   'content-length': '52',
+144 verbose headers   'accept-ranges': 'bytes',
+144 verbose headers   via: '1.1 varnish',
+144 verbose headers   age: '0',
+144 verbose headers   'x-served-by': 'cache-jfk1021-JFK',
+144 verbose headers   'x-cache': 'MISS',
+144 verbose headers   'x-cache-hits': '0',
+144 verbose headers   'x-timer': 'S1419304067.229194,VS0,VE87',
+144 verbose headers   'keep-alive': 'timeout=10, max=50',
+144 verbose headers   connection: 'Keep-Alive' }
+145 silly registry.get cb [ 404,
+145 silly registry.get   { date: 'Tue, 23 Dec 2014 03:07:47 GMT',
+145 silly registry.get     server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+145 silly registry.get     'content-type': 'application/json',
+145 silly registry.get     'cache-control': 'max-age=0',
+145 silly registry.get     'content-length': '52',
+145 silly registry.get     'accept-ranges': 'bytes',
+145 silly registry.get     via: '1.1 varnish',
+145 silly registry.get     age: '0',
+145 silly registry.get     'x-served-by': 'cache-jfk1021-JFK',
+145 silly registry.get     'x-cache': 'MISS',
+145 silly registry.get     'x-cache-hits': '0',
+145 silly registry.get     'x-timer': 'S1419304067.229194,VS0,VE87',
+145 silly registry.get     'keep-alive': 'timeout=10, max=50',
+145 silly registry.get     connection: 'Keep-Alive' } ]
+146 silly lockFile 6fef7097-gulp-jade gulp-jade,@
+147 silly lockFile 6fef7097-gulp-jade gulp-jade,@
+148 http 404 https://registry.npmjs.org/bootstrap%2C
+149 verbose headers { date: 'Tue, 23 Dec 2014 03:07:47 GMT',
+149 verbose headers   server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+149 verbose headers   'content-type': 'application/json',
+149 verbose headers   'cache-control': 'max-age=0',
+149 verbose headers   'content-length': '52',
+149 verbose headers   'accept-ranges': 'bytes',
+149 verbose headers   via: '1.1 varnish',
+149 verbose headers   age: '0',
+149 verbose headers   'x-served-by': 'cache-jfk1024-JFK',
+149 verbose headers   'x-cache': 'MISS',
+149 verbose headers   'x-cache-hits': '0',
+149 verbose headers   'x-timer': 'S1419304067.280557,VS0,VE76',
+149 verbose headers   'keep-alive': 'timeout=10, max=50',
+149 verbose headers   connection: 'Keep-Alive' }
+150 silly registry.get cb [ 404,
+150 silly registry.get   { date: 'Tue, 23 Dec 2014 03:07:47 GMT',
+150 silly registry.get     server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+150 silly registry.get     'content-type': 'application/json',
+150 silly registry.get     'cache-control': 'max-age=0',
+150 silly registry.get     'content-length': '52',
+150 silly registry.get     'accept-ranges': 'bytes',
+150 silly registry.get     via: '1.1 varnish',
+150 silly registry.get     age: '0',
+150 silly registry.get     'x-served-by': 'cache-jfk1024-JFK',
+150 silly registry.get     'x-cache': 'MISS',
+150 silly registry.get     'x-cache-hits': '0',
+150 silly registry.get     'x-timer': 'S1419304067.280557,VS0,VE76',
+150 silly registry.get     'keep-alive': 'timeout=10, max=50',
+150 silly registry.get     connection: 'Keep-Alive' } ]
+151 silly lockFile 28236040-bootstrap bootstrap,@
+152 silly lockFile 28236040-bootstrap bootstrap,@
+153 http 304 https://registry.npmjs.org/gulp-stylus
+154 silly registry.get cb [ 304,
+154 silly registry.get   { date: 'Tue, 23 Dec 2014 03:07:47 GMT',
+154 silly registry.get     server: 'Apache',
+154 silly registry.get     via: '1.1 varnish',
+154 silly registry.get     'last-modified': 'Tue, 23 Dec 2014 03:07:47 GMT',
+154 silly registry.get     'cache-control': 'max-age=60',
+154 silly registry.get     etag: '"1VGVDM8IGY5WGPFFGDE8GI9IT"',
+154 silly registry.get     age: '0',
+154 silly registry.get     'x-served-by': 'cache-jfk1020-JFK',
+154 silly registry.get     'x-cache': 'HIT',
+154 silly registry.get     'x-cache-hits': '1',
+154 silly registry.get     'x-timer': 'S1419304067.366427,VS0,VE15',
+154 silly registry.get     vary: 'Accept',
+154 silly registry.get     'content-length': '0',
+154 silly registry.get     'keep-alive': 'timeout=10, max=49',
+154 silly registry.get     connection: 'Keep-Alive' } ]
+155 verbose etag https://registry.npmjs.org/gulp-stylus from cache
+156 silly addNameRange number 2 { name: 'gulp-stylus', range: '*', hasData: true }
+157 silly addNameRange versions [ 'gulp-stylus',
+157 silly addNameRange   [ '0.0.2',
+157 silly addNameRange     '0.0.3',
+157 silly addNameRange     '0.0.4',
+157 silly addNameRange     '0.0.5',
+157 silly addNameRange     '0.0.7',
+157 silly addNameRange     '0.0.9',
+157 silly addNameRange     '0.0.10',
+157 silly addNameRange     '0.0.11',
+157 silly addNameRange     '0.0.12',
+157 silly addNameRange     '0.0.13',
+157 silly addNameRange     '0.0.14',
+157 silly addNameRange     '0.1.0',
+157 silly addNameRange     '0.2.0',
+157 silly addNameRange     '0.2.1',
+157 silly addNameRange     '1.0.0',
+157 silly addNameRange     '1.0.1',
+157 silly addNameRange     '1.0.2',
+157 silly addNameRange     '1.0.3',
+157 silly addNameRange     '1.0.4',
+157 silly addNameRange     '1.0.5',
+157 silly addNameRange     '1.1.0',
+157 silly addNameRange     '1.3.0',
+157 silly addNameRange     '1.3.2',
+157 silly addNameRange     '1.3.3',
+157 silly addNameRange     '1.3.4' ] ]
+158 verbose addNamed [ 'gulp-stylus', '1.3.4' ]
+159 verbose addNamed [ '1.3.4', '1.3.4' ]
+160 silly lockFile 17745587-gulp-stylus-1-3-4 gulp-stylus@1.3.4
+161 verbose lock gulp-stylus@1.3.4 /home/felipe/.npm/17745587-gulp-stylus-1-3-4.lock
+162 silly lockFile 17745587-gulp-stylus-1-3-4 gulp-stylus@1.3.4
+163 silly lockFile 17745587-gulp-stylus-1-3-4 gulp-stylus@1.3.4
+164 silly lockFile a924a3a8-gulp-stylus gulp-stylus@
+165 silly lockFile a924a3a8-gulp-stylus gulp-stylus@
+166 error 404 404 Not Found: angular%2C
+166 error 404
+166 error 404 'angular%2C' is not in the npm registry.
+166 error 404 You should bug the author to publish it
+166 error 404 It was specified as a dependency of 'fbank'
+166 error 404
+166 error 404 Note that you can also install from a
+166 error 404 tarball, folder, or http url, or git url.
+167 error System Linux 3.13.0-43-generic
+168 error command "/usr/bin/node" "/usr/bin/npm" "install" "angular," "angular-route," "bootstrap," "gulp," "gulp-jade," "gulp-stylus" "--save"
+169 error cwd /home/felipe/projects/fbank/public
+170 error node -v v0.10.33
+171 error npm -v 1.4.28
+172 error code E404
+173 verbose exit [ 1, true ]

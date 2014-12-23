@@ -1,0 +1,32 @@
+{
+  "name": "fbank",
+  "version": "1.0.0",
+  "homepage": "https://github.com/ftrianakast/fbank",
+  "description": "Bower components",
+  "moduleType": [
+    "amd",
+    "es6",
+    "globals",
+    "node",
+    "yui"
+  ],
+  "keywords": [
+    "fbank"
+  ],
+  "authors": [
+    "Felipe Triana"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-bootstrap": "~0.12.0",
+    "angular-flash": "~0.1.14"
+  }
+}

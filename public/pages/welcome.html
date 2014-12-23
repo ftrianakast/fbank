@@ -1,0 +1,49 @@
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container">
+    <div class="nav-header"><a href="#/" class="navbar-brand">Fbank</a></div>
+  </div>
+</nav>
+<div class="container">
+  <div class="jumbotron">
+    <h1>Banco Fbank</h1>
+    <p>Use esta consola de administración para administrar clientes, cuentas y movimientos.</p>
+  </div>
+  <table class="table">
+    <caption>Aquí puede ver todos los clientes del banco</caption>
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Name</th>
+        <th>Address</th>
+        <th>Phone</th>
+        <th></th>
+        <th> </th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="client in clients">
+        <th>{{ client.id || $index + 1 }}</th>
+        <th>{{ client.name }}</th>
+        <th>{{ client.address }}</th>
+        <th>{{ client.phone }}</th>
+        <th>
+          <button ng-click="seeAccounts(client)" class="btn btn-info btn-sm">Ver cuentas</button>
+        </th>
+        <th>
+          <button ng-click="addAccount('sm', client)" class="btn btn-success btn-sm">Nueva cuenta</button>
+        </th>
+        <th>
+          <button ng-click="editClient('sm', client)" class="btn btn-warning btn-sm">Editar</button>
+        </th>
+        <th> 
+          <button ng-click="deleteClient('sm', client)" class="btn btn-danger btn-sm">Borrar	</button>
+        </th>
+      </tr>
+    </tbody>
+  </table>
+  <button ng-click="openRegisterModal('sm')" class="btn btn-default btn-lg">Registrar Cliente</button>
+  <div id="alert-1" flash-alert="success" active-class="in" style="margin-top: 30px" class="alert fade"><span class="alert-message">{{ flash.message }}</span></div>
+</div>

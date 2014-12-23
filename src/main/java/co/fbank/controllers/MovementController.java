@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
+import co.fbank.controllers.aux.Message;
 import co.fbank.controllers.aux.MovementAux;
 import co.fbank.domain.Account;
 import co.fbank.domain.Movement;
@@ -50,7 +51,7 @@ public class MovementController {
 	@RequestMapping(value = "/accounts/{accountNumber}/movements", method = RequestMethod.POST)
 	@ResponseStatus(HttpStatus.CREATED)
 	@ResponseBody
-	public ResponseEntity<String> registerMovement(
+	public ResponseEntity<Message> registerMovement(
 			@PathVariable Long accountNumber,
 			@Valid @RequestBody MovementAux mvmClientInput) {
 		Account account = accountRepository.findOne(accountNumber);
@@ -58,19 +59,19 @@ public class MovementController {
 			Optional<Movement> realMvm = mvmClientInput.getRealMovement();
 			if (realMvm.isPresent()) {
 				accountMovement.registerMovement(realMvm.get(), account);
-				return new ResponseEntity<String>(
+				return new ResponseEntity<Message>(new Message(
 						"Your movement was performed and you have a new balance of: "
-								+ account.getBalance(), HttpStatus.CREATED);
+								+ account.getBalance()), HttpStatus.CREATED);
 			} else {
-				return new ResponseEntity<String>(
-						"Your movement type is not allowed",
+				return new ResponseEntity<Message>(new Message(
+						"Your movement type is not allowed"),
 						HttpStatus.BAD_REQUEST);
 			}
 		} catch (NegativeBalanceException e) {
-			return new ResponseEntity<String>(e.getMessage(),
+			return new ResponseEntity<Message>(new Message(e.getMessage()),
 					HttpStatus.INTERNAL_SERVER_ERROR);
 		} catch (MovementTypeNotAllowedException e) {
-			return new ResponseEntity<String>(e.getMessage(),
+			return new ResponseEntity<Message>(new Message(e.getMessage()),
 					HttpStatus.BAD_REQUEST);
 		}
 	}

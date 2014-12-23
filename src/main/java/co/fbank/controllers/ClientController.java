@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
+import co.fbank.controllers.aux.Message;
 import co.fbank.controllers.aux.ReportRequest;
 import co.fbank.domain.Client;
 import co.fbank.persistence.ClientRepository;
@@ -34,23 +35,29 @@ public class ClientController {
 
 	@Autowired
 	private ReportGenerator reportGenerator;
-	
+
+	@RequestMapping(value = "/clients", method = RequestMethod.GET)
+	@ResponseBody
+	public Iterable<Client> getClients() {
+		return clientRepository.findAll();
+	}
+
 	/**
 	 * 
 	 * @param client
 	 * @return
 	 */
 	@RequestMapping(value = "/clients", method = RequestMethod.POST)
-	@ResponseBody
-	public ResponseEntity<String> addClient(@Valid @RequestBody Client client) {
+	public ResponseEntity<Message> addClient(@Valid @RequestBody Client client) {
 		try {
 			clientRepository.save(client);
-			return new ResponseEntity<String>(
-					"User succesfully added with id: " + client.getId(),
+			return new ResponseEntity<Message>(new Message(
+					"User succesfully added with id: " + client.getId()),
 					HttpStatus.CREATED);
 		} catch (Exception e) {
-			return new ResponseEntity<String>("Error deleting the client:"
-					+ e.toString(), HttpStatus.INTERNAL_SERVER_ERROR);
+			return new ResponseEntity<Message>(new Message(
+					"Error deleting the client:" + e.toString()),
+					HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
 
@@ -74,14 +81,15 @@ public class ClientController {
 	 */
 	@RequestMapping(value = "/clients/{id}", method = RequestMethod.DELETE)
 	@ResponseBody
-	public ResponseEntity<String> deleteClient(@PathVariable Long id) {
+	public ResponseEntity<Message> deleteClient(@PathVariable Long id) {
 		try {
 			clientRepository.delete(id);
-			return new ResponseEntity<String>("User was successfully deleted",
-					HttpStatus.ACCEPTED);
+			return new ResponseEntity<Message>(new Message(
+					"User was successfully deleted"), HttpStatus.ACCEPTED);
 		} catch (Exception e) {
-			return new ResponseEntity<String>(
-					"Error deleting the client. Its probably that the required client doesn't not exist",
+			return new ResponseEntity<Message>(
+					new Message(
+							"Error deleting the client. Its probably that the required client doesn't not exist"),
 					HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
@@ -96,7 +104,7 @@ public class ClientController {
 	 */
 	@RequestMapping(value = "/clients/{id}", method = RequestMethod.PUT)
 	@ResponseBody
-	public ResponseEntity<String> updateClient(@PathVariable Long id,
+	public ResponseEntity<Message> updateClient(@PathVariable Long id,
 			@RequestBody Client client) {
 		try {
 			Client oldClient = clientRepository.findOne(id);
@@ -105,19 +113,20 @@ public class ClientController {
 				client.setId(oldClient.getId());
 				clientRepository.save(client);
 				response += "The client was updated with new information";
-				return new ResponseEntity<String>(response, HttpStatus.ACCEPTED);
+				return new ResponseEntity<Message>(new Message(response),
+						HttpStatus.ACCEPTED);
 			} else {
 				response += "The client you want update doesn't exist";
-				return new ResponseEntity<String>(response,
+				return new ResponseEntity<Message>(new Message(response),
 						HttpStatus.NOT_FOUND);
 			}
 		} catch (Exception e) {
-			return new ResponseEntity<String>(
-					"There was an error updating the client",
+			return new ResponseEntity<Message>(new Message(
+					"There was an error updating the client"),
 					HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
-	
+
 	/**
 	 * It allows to generate a report of movements of a client inn multiple
 	 * accounts
@@ -132,9 +141,6 @@ public class ClientController {
 			@Valid @RequestBody ReportRequest reportRequest) {
 		Date initDate = reportRequest.getInitDate();
 		Date endDate = reportRequest.getEndDate();
-		System.out.println("-------------------------------------------");
-		System.out.println(initDate);
-		System.out.println(endDate);
 		Report report = reportGenerator.generateAccountsReport(initDate,
 				endDate, clientId);
 		return new ResponseEntity<Report>(report, HttpStatus.OK);

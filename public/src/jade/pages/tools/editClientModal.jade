@@ -1,0 +1,17 @@
+div.modal-header
+	h3.modal-title Edite este cliente
+div.modal-body
+	form
+		div.form-group
+			label Nuevo Nombre:
+			input.form-control(placeholder="Registre un nuevo nombre", ng-model="newClient.name")
+		div.form-group
+			label Nueva Dirección:
+			input.form-control(placeholder="Registre una nueva dirección", ng-model="newClient.address")
+		div.form-group
+			label Nuevo Teléfono:
+			input.form-control(placeholder="Registre un nuevo teléfono", ng-model= "newClient.phone")
+
+div.modal-footer
+	button.btn.btn-success(ng-click="edit()") Terminar
+	button.btn.btn-default(ng-click="cancel()") Cancelar
