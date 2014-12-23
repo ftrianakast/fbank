@@ -1,4 +1,4 @@
-var app = angular.module("fbank", ["ngRoute", "ui.bootstrap", "angular-flash.service", "angular-flash.flash-alert-directive"]);
+var app = angular.module("fbank", ["ngRoute", "ui.bootstrap", "angular-flash.service", "angular-flash.flash-alert-directive", "fiestah.money"]);
 
 app.config([
     "$routeProvider",
@@ -9,6 +9,12 @@ app.config([
         }).when("/clients/:clientId/accounts", {
             templateUrl: "pages/accounts.html",
             controller: "AccountsCtrl"
+        }).when("/accounts/:accountId/movements", {
+            templateUrl: "pages/movements.html",
+            controller: "MovementsCtrl"
+        }).when("/clients/:clientId/reports", {
+            templateUrl: "pages/report.html",
+            controller: "ReportCtrl"
         }).otherwise({
             redirectTo: "/"
         });
@@ -32,10 +38,9 @@ app.controller("WelcomeCtrl", ["$scope", "$modal", "serverBridge", "$log", "flas
             controller: "ModalRegClientCtrl",
             size: size
         });
-
         modalInstance.result.then(function(user) {
             $serverBridge.registerClient(user).success(function(response) {
-                $scope.clients.push(user);
+                init();
                 $flash.to('alert-1').success = response.message;
             }).error(function(error) {
                 $flash.to('alert-1').error = error.message;
@@ -107,10 +112,69 @@ app.controller("WelcomeCtrl", ["$scope", "$modal", "serverBridge", "$log", "flas
         });
     }
 
+    $scope.generateReport = function(size, client) {
+        var modalInstance = $modal.open({
+            templateUrl: "pages/tools/generateReportModal.html",
+            controller: "ModalGenerateReportCtrl",
+            size: size
+        });
+
+        modalInstance.result.then(function(reportRequest) {
+            var path = "/clients/" + client.id + "/reports";
+            $location.path(path).search("initDate", reportRequest.initDate).search("endDate", reportRequest.endDate);
+        });
+
+    }
+
     $scope.seeAccounts = function(client) {
         $location.path("/clients/" + client.id + "/accounts");
     }
 }]);
+
+app.controller("ModalGenerateReportCtrl", function($scope, $modalInstance) {
+    $scope.startDate;
+    $scope.endDate;
+    $scope.startHour = new Date();
+    $scope.endHour = new Date();
+
+    $scope.reportRequest = {
+        initDate: "",
+        endDate: ""
+    }
+
+    $scope.format = "dd-MM-yyyy";
+    $scope.hstep = 1;
+    $scope.mstep = 1;
+    $scope.ismeridian = true;
+
+    $scope.openInitDate = function($event) {
+        $event.preventDefault();
+        $event.stopPropagation();
+        $scope.openedInitDate = true;
+    };
+
+
+    $scope.openEndDate = function($event) {
+        $event.preventDefault();
+        $event.stopPropagation();
+        $scope.openedEndDate = true;
+    };
+
+    $scope.generate = function() {
+        $scope.startDate.setHours(($scope.startHour.getHours()));
+        $scope.startDate.setMinutes(($scope.startHour.getMinutes()));
+        $scope.endDate.setHours(($scope.endHour.getHours()));
+        $scope.endDate.setMinutes(($scope.endHour.getMinutes()));
+        $scope.reportRequest.initDate = $scope.startDate;
+        $scope.reportRequest.endDate = $scope.endDate;
+        $modalInstance.close($scope.reportRequest);
+    }
+
+    $scope.cancel = function() {
+        $modalInstance.dismiss('cancel');
+    }
+
+});
 
 
 app.controller("ModalEditClientCtrl", function($scope, $modalInstance, client) {
@@ -236,7 +300,10 @@ app.controller("AccountsCtrl", ["$scope", "$modal", "serverBridge", "$log", "fla
         }, function() {
             $log.info("Modal dismissed at: " + new Date());
         });
+    }
 
+    $scope.seeMovements = function(account) {
+        $location.path("/accounts/" + account.number + "/movements");
     }
 }]);
 
@@ -255,6 +322,62 @@ app.controller("ModalAddMovementCtrl", function($scope, $modalInstance) {
     }
 });
 
+app.controller("MovementsCtrl", ["$scope", "$modal", "serverBridge", "$log", "flash", "$routeParams", "$location", function($scope, $modal, $serverBridge, $log, $flash, $routeParams, $location) {
+    init();
+    $scope.movements;
+
+    function init() {
+        $serverBridge.getMovements($routeParams.accountId).success(function(response) {
+            $scope.movements = response;
+        }).error(function(error) {
+            $flast.to("alert-4").error = error;
+        });
+    }
+
+    $scope.goBack = function() {
+        window.history.back();
+    }
+}]);
+
+
+app.controller("ReportCtrl", ["$scope", "$modal", "serverBridge", "$log", "flash", "$routeParams", "$location", function($scope, $modal, $serverBridge, $log, $flash, $routeParams, $location) {
+    $scope.report;
+    $scope.reportRequest = {};
+    init();
+
+    function init() {
+        var initDate = new Date($location.search().initDate);
+        var endDate = new Date($location.search().endDate);
+        $scope.reportRequest.initDate = formatDate(initDate);
+        $scope.reportRequest.endDate = formatDate(endDate);
+
+        $serverBridge.generateReport($routeParams.clientId, $scope.reportRequest).success(function(report) {
+            $scope.report = report;
+        }, function(err) {
+            console.log(err);
+        });
+
+    }
+
+    $scope.goBack = function() {
+        window.history.back();
+    }
+
+    function formatDate(date) {
+        return n(date.getDate()) + "-" +
+            n(date.getMonth() +1) + "-" +
+            date.getFullYear() + " " +
+            n(date.getHours()) + ":" +
+            n(date.getMinutes()) + ":" +
+            n(date.getUTCSeconds());
+    }
+
+    function n(n) {
+        return n > 9 ? "" + n : "0" + n;
+    }
+
+
+}]);
 
 app.service("serverBridge", ["$http", function($http) {
     this.getClient = function(clientId) {
@@ -291,6 +414,14 @@ app.service("serverBridge", ["$http", function($http) {
 
     this.registerMovement = function(accountId, movement) {
         return $http.post("/accounts/" + accountId + "/movements", movement);
+    }
+
+    this.getMovements = function(accountId) {
+        return $http.get("/accounts/" + accountId + "/movements");
+    }
+
+    this.generateReport = function(clientId, reportRequest) {
+        return $http.post("/clients/" + clientId + "/reports", reportRequest);
     }
 
 }]);

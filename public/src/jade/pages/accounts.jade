@@ -15,9 +15,9 @@ div.container
 		tbody
 			tr(ng-repeat="account in accounts")
 				th {{ account.number || $index + 1 }}
-				th {{ account.balance }}
+				th {{ account.balance | currency : symbol : fractionSize }}
 				th
-					button.btn.btn-info.btn-sm(ng-click="seeMovements()") Ver movimientos
+					button.btn.btn-info.btn-sm(ng-click="seeMovements(account)") Ver movimientos
 				th
 					button.btn.btn-success.btn-sm(ng-click="registerMovement('sm', account)") Registrar un movimiento
 				th 
@@ -27,7 +27,7 @@ div.container
 		span.alert-message {{flash.message}}
 
 
-	div(style="margin-top: 20px")
+	div(style="margin: 20px")
 		a.btn.btn-default.btn-lg(ng-href="#/", style="margin-right: 30px") Volver atrás	
 		button.btn.btn-lg.btn-success(ng-click="addAccount('sm')") Add account
 

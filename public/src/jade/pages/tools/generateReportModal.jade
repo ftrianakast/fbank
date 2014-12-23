@@ -1,0 +1,34 @@
+div.modal-header
+	h3.modal-title Generar reporte
+	p.modal-description Genere un reporte entre las fechas indicadas
+div.modal-body.row
+	form(novalidate, name="generateReportForm")
+		.container
+			div.form-group.row(ng-class="{ 'has-error': generateReportForm.initDate.$invalid }" )
+				.col-md-3
+					label Fecha de Inicio:
+					input.form-control(type="text", required, datepicker-popup="{{ format }}", ng-model = "startDate", is-open="openedInitDate", close-text="Close")
+					span.input-group-btn
+						button.btn.btn-default(ng-click="openInitDate($event)")
+							i.glyphicon.glyphicon-calendar
+				
+				.col-md-3
+					label Hora Inicio:
+					timepicker(ng-model="startHour", hour-step="hstep", minute-step="mstep", show-meridian="ismeridian")
+
+			div.form-group.row(ng-class="{ 'has-error': editClientForm.address.$invalid }" )
+				.col-md-3
+					label Fecha de Finalización:
+					input.form-control(type="text", required, datepicker-popup="{{ format }}", ng-model = "endDate", is-open="openedEndDate", close-text="Close")
+					span.input-group-btn
+						button.btn.btn-default(ng-click="openEndDate($event)")
+							i.glyphicon.glyphicon-calendar
+
+				.col-md-3
+					label Hora de Finalización:			
+					timepicker(ng-model="endHour", hour-step="hstep", minute-step="mstep", show-meridian="ismeridian")
+
+
+div.modal-footer
+	button.btn.btn-success(ng-click="generate()", ng-disabled="generateReportForm.$invalid") Generar
+	button.btn.btn-default(ng-click="cancel()") Cancelar

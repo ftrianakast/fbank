@@ -1,0 +1,30 @@
+include ./includes/nav.jade
+
+div.container
+	div.jumbotron
+		h1 Movimientos
+		p Vea aquí los movimientos de la cuenta: {{ account.number }}
+
+	
+
+	table.table
+		caption Aquí puede ver los movimientos de un cliente
+		thead
+			tr
+				th Movement Id
+				th Valor
+				th Tipo
+				th Fecha
+		tbody
+			tr(ng-repeat="movement in movements")
+				th {{ movement.id || $index + 1 }}
+				th {{ movement.value | currency : symbol : fractionSize }}
+				th {{ movement.type }}
+				th {{ movement.date | date : format : timezone}}
+
+	#alert-4.alert.fade(flash-alert='', active-class='in')
+		span.alert-message {{flash.message}}
+
+
+	div(style="margin: 20px")
+		button.btn.btn-default.btn-lg(ng-click="goBack()", style="margin-right: 30px") Volver atrás	

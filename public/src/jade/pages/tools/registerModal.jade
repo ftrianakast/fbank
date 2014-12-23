@@ -1,17 +1,17 @@
 div.modal-header
 	h3.modal-title Agregue un cliente
 div.modal-body
-	form
-		div.form-group
+	form(novalidate, name="clientForm")
+		div.form-group(ng-class="{ 'has-error': clientForm.name.$invalid }" )
 			label Nombre:
-			input.form-control(placeholder="Registre un nombre", ng-model="user.name")
-		div.form-group
+			input.form-control(placeholder="Registre un nombre", name="name", ng-model="user.name", required, ng-minlength="3")
+		div.form-group(ng-class="{ 'has-error': clientForm.address.$invalid }" )
 			label Dirección:
-			input.form-control(placeholder="Registre una dirección", ng-model="user.address")
-		div.form-group
+			input.form-control(placeholder="Registre una dirección", ng-model="user.address", name="address", required)
+		div.form-group(ng-class="{ 'has-error': clientForm.number.$invalid }" )
 			label Teléfono:
-			input.form-control(placeholder="Registre un teléfono", ng-model= "user.phone")
+			input.form-control(placeholder="Registre un teléfono", ng-model= "user.phone", type="number", name="number", required)
 
 div.modal-footer
-	button.btn.btn-success(ng-click="register()") Registrar
+	button.btn.btn-success(ng-click="register(clientForm.$valid)", ng-disabled="clientForm.$invalid") Registrar
 	button.btn.btn-default(ng-click="cancel()") Cancelar

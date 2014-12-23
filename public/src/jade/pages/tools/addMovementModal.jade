@@ -1,17 +1,17 @@
 div.modal-header
 	h3.modal-title Agregue un movimiento a esta cuenta
 div.modal-body
-	form
-		div.form-group
+	form(novalidate, name="addMovementForm")
+		div.form-group(ng-class="{ 'has-error': addMovementForm.type.$invalid }" )
 			label Tipo:
-			input(type="radio", ng-model="movement.type", value="CREDIT")
+			input(type="radio", ng-model="movement.type", value="CREDIT", name="type", ng-required="!movement.type")
 			| Crédito
-			input(type="radio", ng-model="movement.type", value="DEBIT")
+			input(type="radio", ng-model="movement.type", value="DEBIT", name="type", ng-required="!movement.type")
 			| Débito
-		div.form-group
+		div.form-group(ng-class="{ 'has-error': addMovementForm.value.$invalid }" )
 			label Valor:
-			input.form-control(placeholder="Registre el valor de la transacción", ng-model="movement.value")
+			input.form-control(placeholder="Registre el valor de la transacción", ng-model="movement.value", name="value", money, required)
 
 div.modal-footer
-	button.btn.btn-success(ng-click="register()") Registrar
+	button.btn.btn-success(ng-click="register()", ng-disabled="addMovementForm.$invalid") Registrar
 	button.btn.btn-default(ng-click="cancel()") Cancelar

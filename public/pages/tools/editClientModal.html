@@ -3,22 +3,22 @@
   <h3 class="modal-title">Edite este cliente</h3>
 </div>
 <div class="modal-body">
-  <form>
-    <div class="form-group">
+  <form novalidate="novalidate" name="editClientForm">
+    <div ng-class="{ 'has-error': editClientForm.name.$invalid }" class="form-group">
       <label>Nuevo Nombre:</label>
-      <input placeholder="Registre un nuevo nombre" ng-model="newClient.name" class="form-control"/>
+      <input placeholder="Registre un nuevo nombre" ng-model="newClient.name" name="name" required="required" class="form-control"/>
     </div>
-    <div class="form-group">
+    <div ng-class="{ 'has-error': editClientForm.address.$invalid }" class="form-group">
       <label>Nueva Dirección:</label>
-      <input placeholder="Registre una nueva dirección" ng-model="newClient.address" class="form-control"/>
+      <input placeholder="Registre una nueva dirección" ng-model="newClient.address" name="address" required="required" class="form-control"/>
     </div>
-    <div class="form-group">
+    <div ng-class="{ 'has-error': editClientForm.phone.$invalid }" class="form-group">
       <label>Nuevo Teléfono:</label>
-      <input placeholder="Registre un nuevo teléfono" ng-model="newClient.phone" class="form-control"/>
+      <input placeholder="Registre un nuevo teléfono" ng-model="newClient.phone" required="required" name="number" class="form-control"/>
     </div>
   </form>
 </div>
 <div class="modal-footer">
-  <button ng-click="edit()" class="btn btn-success">Terminar</button>
+  <button ng-click="edit()" ng-disabled="editClientForm.$invalid" class="btn btn-success">Terminar</button>
   <button ng-click="cancel()" class="btn btn-default">Cancelar</button>
 </div>

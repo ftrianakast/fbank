@@ -1,17 +1,17 @@
 div.modal-header
 	h3.modal-title Edite este cliente
 div.modal-body
-	form
-		div.form-group
+	form(novalidate, name="editClientForm")
+		div.form-group(ng-class="{ 'has-error': editClientForm.name.$invalid }" )
 			label Nuevo Nombre:
-			input.form-control(placeholder="Registre un nuevo nombre", ng-model="newClient.name")
-		div.form-group
+			input.form-control(placeholder="Registre un nuevo nombre", ng-model="newClient.name", name="name", required)
+		div.form-group(ng-class="{ 'has-error': editClientForm.address.$invalid }" )
 			label Nueva Dirección:
-			input.form-control(placeholder="Registre una nueva dirección", ng-model="newClient.address")
-		div.form-group
+			input.form-control(placeholder="Registre una nueva dirección", ng-model="newClient.address", name="address", required)
+		div.form-group(ng-class="{ 'has-error': editClientForm.phone.$invalid }" )
 			label Nuevo Teléfono:
-			input.form-control(placeholder="Registre un nuevo teléfono", ng-model= "newClient.phone")
+			input.form-control(placeholder="Registre un nuevo teléfono", ng-model= "newClient.phone", required, name="number")
 
 div.modal-footer
-	button.btn.btn-success(ng-click="edit()") Terminar
+	button.btn.btn-success(ng-click="edit()", ng-disabled="editClientForm.$invalid") Terminar
 	button.btn.btn-default(ng-click="cancel()") Cancelar

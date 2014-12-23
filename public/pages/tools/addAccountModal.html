@@ -3,10 +3,10 @@
   <h3 class="modal-title">Agregue una cuenta a este cliente</h3>
 </div>
 <div class="modal-body">
-  <form>
-    <div class="form-group">
+  <form name="addAccountForm" novalidate="novalidate">
+    <div ng-class="{ 'has-error': addAccountForm.balance.$invalid }" class="form-group">
       <label>Saldo:</label>
-      <input placeholder="Ponga el saldo inicial de la cuenta" ng-model="initBalance" class="form-control"/>
+      <input placeholder="Ponga el saldo inicial de la cuenta" ng-model="initBalance" name="balance" money="money" required="required" class="form-control"/>
     </div>
   </form>
 </div>

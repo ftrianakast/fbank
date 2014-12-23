@@ -1,10 +1,10 @@
 div.modal-header
 	h3.modal-title Agregue una cuenta a este cliente
 div.modal-body
-	form
-		div.form-group
+	form(name="addAccountForm", novalidate)
+		div.form-group(ng-class="{ 'has-error': addAccountForm.balance.$invalid }")
 			label Saldo:
-			input.form-control(placeholder="Ponga el saldo inicial de la cuenta", ng-model="initBalance")
+			input.form-control(placeholder="Ponga el saldo inicial de la cuenta", ng-model="initBalance", name="balance", money, required)
 
 div.modal-footer
 	button.btn.btn-success(ng-click="addAccount()") Registrar

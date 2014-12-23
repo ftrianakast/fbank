@@ -30,9 +30,12 @@ div.container
 				th
 					button.btn.btn-warning.btn-sm(ng-click="editClient('sm', client)") Editar
 				th 
-					button.btn.btn-danger.btn-sm(ng-click="deleteClient('sm', client)") Borrar	
+					button.btn.btn-danger.btn-sm(ng-click="deleteClient('sm', client)") Borrar
+				th
+					button.btn.btn-info.btn-sm(ng-click="generateReport('', client)") Generar Reporte	
 
-	button.btn.btn-default.btn-lg(ng-click="openRegisterModal('sm')") Registrar Cliente
 	#alert-1.alert.fade(flash-alert='', active-class='in')
 		span.alert-message {{flash.message}}
+
+	button.btn.btn-default.btn-lg(ng-click="openRegisterModal('sm')", style="margin-right: 30px") Registrar Cliente	
 

@@ -39,11 +39,14 @@
           <button ng-click="editClient('sm', client)" class="btn btn-warning btn-sm">Editar</button>
         </th>
         <th> 
-          <button ng-click="deleteClient('sm', client)" class="btn btn-danger btn-sm">Borrar	</button>
+          <button ng-click="deleteClient('sm', client)" class="btn btn-danger btn-sm">Borrar</button>
+        </th>
+        <th>
+          <button ng-click="generateReport('', client)" class="btn btn-info btn-sm">Generar Reporte	</button>
         </th>
       </tr>
     </tbody>
   </table>
-  <button ng-click="openRegisterModal('sm')" class="btn btn-default btn-lg">Registrar Cliente</button>
   <div id="alert-1" flash-alert="" active-class="in" class="alert fade"><span class="alert-message">{{flash.message}}</span></div>
+  <button ng-click="openRegisterModal('sm')" style="margin-right: 30px" class="btn btn-default btn-lg">Registrar Cliente	</button>
 </div>

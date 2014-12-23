@@ -141,6 +141,10 @@ public class ClientController {
 			@Valid @RequestBody ReportRequest reportRequest) {
 		Date initDate = reportRequest.getInitDate();
 		Date endDate = reportRequest.getEndDate();
+		System.out.println("------------------------------------");
+		System.out.println(initDate);
+		System.out.println(endDate);
+		
 		Report report = reportGenerator.generateAccountsReport(initDate,
 				endDate, clientId);
 		return new ResponseEntity<Report>(report, HttpStatus.OK);

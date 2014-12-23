@@ -3,22 +3,22 @@
   <h3 class="modal-title">Agregue un cliente</h3>
 </div>
 <div class="modal-body">
-  <form>
-    <div class="form-group">
+  <form novalidate="novalidate" name="clientForm">
+    <div ng-class="{ 'has-error': clientForm.name.$invalid }" class="form-group">
       <label>Nombre:</label>
-      <input placeholder="Registre un nombre" ng-model="user.name" class="form-control"/>
+      <input placeholder="Registre un nombre" name="name" ng-model="user.name" required="required" ng-minlength="3" class="form-control"/>
     </div>
-    <div class="form-group">
+    <div ng-class="{ 'has-error': clientForm.address.$invalid }" class="form-group">
       <label>Dirección:</label>
-      <input placeholder="Registre una dirección" ng-model="user.address" class="form-control"/>
+      <input placeholder="Registre una dirección" ng-model="user.address" name="address" required="required" class="form-control"/>
     </div>
-    <div class="form-group">
+    <div ng-class="{ 'has-error': clientForm.number.$invalid }" class="form-group">
       <label>Teléfono:</label>
-      <input placeholder="Registre un teléfono" ng-model="user.phone" class="form-control"/>
+      <input placeholder="Registre un teléfono" ng-model="user.phone" type="number" name="number" required="required" class="form-control"/>
     </div>
   </form>
 </div>
 <div class="modal-footer">
-  <button ng-click="register()" class="btn btn-success">Registrar</button>
+  <button ng-click="register(clientForm.$valid)" ng-disabled="clientForm.$invalid" class="btn btn-success">Registrar</button>
   <button ng-click="cancel()" class="btn btn-default">Cancelar</button>
 </div>

@@ -1,0 +1,37 @@
+
+<div class="modal-header">
+  <h3 class="modal-title">Generar reporte</h3>
+  <p class="modal-description">Genere un reporte entre las fechas indicadas</p>
+</div>
+<div class="modal-body row">
+  <form novalidate="novalidate" name="generateReportForm">
+    <div class="container">
+      <div ng-class="{ 'has-error': generateReportForm.initDate.$invalid }" class="form-group row">
+        <div class="col-md-3">
+          <label>Fecha de Inicio:</label>
+          <input type="text" required="required" datepicker-popup="{{ format }}" ng-model="startDate" is-open="openedInitDate" close-text="Close" class="form-control"/><span class="input-group-btn">
+            <button ng-click="openInitDate($event)" class="btn btn-default"><i class="glyphicon glyphicon-calendar"></i></button></span>
+        </div>
+        <div class="col-md-3">
+          <label>Hora Inicio:</label>
+          <timepicker ng-model="startHour" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></timepicker>
+        </div>
+      </div>
+      <div ng-class="{ 'has-error': editClientForm.address.$invalid }" class="form-group row">
+        <div class="col-md-3">
+          <label>Fecha de Finalización:</label>
+          <input type="text" required="required" datepicker-popup="{{ format }}" ng-model="endDate" is-open="openedEndDate" close-text="Close" class="form-control"/><span class="input-group-btn">
+            <button ng-click="openEndDate($event)" class="btn btn-default"><i class="glyphicon glyphicon-calendar"></i></button></span>
+        </div>
+        <div class="col-md-3">
+          <label>Hora de Finalización:			</label>
+          <timepicker ng-model="endHour" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></timepicker>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+<div class="modal-footer">
+  <button ng-click="generate()" ng-disabled="generateReportForm.$invalid" class="btn btn-success">Generar</button>
+  <button ng-click="cancel()" class="btn btn-default">Cancelar</button>
+</div>

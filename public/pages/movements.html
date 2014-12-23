@@ -1,0 +1,35 @@
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container">
+    <div class="nav-header"><a href="#/" class="navbar-brand">Fbank</a></div>
+  </div>
+</nav>
+<div class="container">
+  <div class="jumbotron">
+    <h1>Movimientos</h1>
+    <p>Vea aquí los movimientos de la cuenta: {{ account.number }}</p>
+  </div>
+  <table class="table">
+    <caption>Aquí puede ver los movimientos de un cliente</caption>
+    <thead>
+      <tr>
+        <th>Movement Id</th>
+        <th>Valor</th>
+        <th>Tipo</th>
+        <th>Fecha</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="movement in movements">
+        <th>{{ movement.id || $index + 1 }}</th>
+        <th>{{ movement.value | currency : symbol : fractionSize }}</th>
+        <th>{{ movement.type }}</th>
+        <th>{{ movement.date | date : format : timezone}}</th>
+      </tr>
+    </tbody>
+  </table>
+  <div id="alert-4" flash-alert="" active-class="in" class="alert fade"><span class="alert-message">{{flash.message}}</span></div>
+  <div style="margin: 20px">
+    <button ng-click="goBack()" style="margin-right: 30px" class="btn btn-default btn-lg">Volver atrás	</button>
+  </div>
+</div>

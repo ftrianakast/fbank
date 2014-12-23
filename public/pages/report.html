@@ -1,0 +1,62 @@
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container">
+    <div class="nav-header"><a href="#/" class="navbar-brand">Fbank</a></div>
+  </div>
+</nav>
+<div class="container">
+  <div class="jumbotron">
+    <h1>Resumen de movimientos</h1>
+    <p>Vea aquí el resumen de movimientos de su cliente</p>
+  </div>
+  <p><strong>Fecha de inicio:</strong> {{ report.initDate }}</p>
+  <p><strong>Fecha de finalización:</strong> {{ report.initDate }}</p>
+  <div ng-repeat="account in report.accounts">
+    <p><strong>Número de cuenta:</strong> {{ account.accountNumber }}</p>
+    <p><strong>Total movimientos crédito:</strong> {{ account.totalCreditMovements }}</p>
+    <p><strong>Total movimientos débito:</strong> {{ account.totalDebitMovements }}</p>
+    <p><strong>Saldo:</strong> {{ account.balance | currency : symbol : fractionSize }}</p>
+    <table class="table">
+      <caption>Movimientos de crédito sobre esta cuenta</caption>
+      <thead>
+        <tr>
+          <th>Movement Id</th>
+          <th>Valor</th>
+          <th>Tipo</th>
+          <th>Fecha</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="movement in account.creditMovements">
+          <th>{{ movement.id || $index + 1 }}</th>
+          <th>{{ movement.value | currency : symbol : fractionSize }}</th>
+          <th>{{ movement.type }}</th>
+          <th>{{ movement.date | date : format : timezone}}</th>
+        </tr>
+      </tbody>
+    </table>
+    <table class="table">
+      <caption>Movimientos de débito sobre esta cuenta</caption>
+      <thead>
+        <tr>
+          <th>Movement Id</th>
+          <th>Valor</th>
+          <th>Tipo</th>
+          <th>Fecha</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="movement in account.debitMovements">
+          <th>{{ movement.id || $index + 1 }}</th>
+          <th>{{ movement.value | currency : symbol : fractionSize }}</th>
+          <th>{{ movement.type }}</th>
+          <th>{{ movement.date | date : format : timezone}}</th>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div id="alert-4" flash-alert="" active-class="in" class="alert fade"><span class="alert-message">{{flash.message}}</span></div>
+  <div style="margin: 20px">
+    <button ng-click="goBack()" style="margin-right: 30px" class="btn btn-default btn-lg">Volver atrás	</button>
+  </div>
+</div>

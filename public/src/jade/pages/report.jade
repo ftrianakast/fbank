@@ -1,0 +1,54 @@
+include ./includes/nav.jade
+
+div.container
+	div.jumbotron
+		h1 Resumen de movimientos
+		p Vea aquí el resumen de movimientos de su cliente
+
+	p <strong>Fecha de inicio:</strong> {{ report.initDate }}
+	p <strong>Fecha de finalización:</strong> {{ report.initDate }}
+
+	
+	div(ng-repeat="account in report.accounts")
+		p <strong>Número de cuenta:</strong> {{ account.accountNumber }}
+		p <strong>Total movimientos crédito:</strong> {{ account.totalCreditMovements }}
+		p <strong>Total movimientos débito:</strong> {{ account.totalDebitMovements }}
+		p <strong>Saldo:</strong> {{ account.balance | currency : symbol : fractionSize }}
+
+		table.table
+			caption Movimientos de crédito sobre esta cuenta
+			thead
+				tr
+					th Movement Id
+					th Valor
+					th Tipo
+					th Fecha
+			tbody
+				tr(ng-repeat="movement in account.creditMovements")
+					th {{ movement.id || $index + 1 }}
+					th {{ movement.value | currency : symbol : fractionSize }}
+					th {{ movement.type }}
+					th {{ movement.date | date : format : timezone}}
+
+		table.table
+			caption Movimientos de débito sobre esta cuenta
+			thead
+				tr
+					th Movement Id
+					th Valor
+					th Tipo
+					th Fecha
+			tbody
+				tr(ng-repeat="movement in account.debitMovements")
+					th {{ movement.id || $index + 1 }}
+					th {{ movement.value | currency : symbol : fractionSize }}
+					th {{ movement.type }}
+					th {{ movement.date | date : format : timezone}}
+
+
+	#alert-4.alert.fade(flash-alert='', active-class='in')
+		span.alert-message {{flash.message}}
+
+
+	div(style="margin: 20px")
+		button.btn.btn-default.btn-lg(ng-click="goBack()", style="margin-right: 30px") Volver atrás	

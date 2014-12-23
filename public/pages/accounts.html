@@ -21,9 +21,9 @@
     <tbody>
       <tr ng-repeat="account in accounts">
         <th>{{ account.number || $index + 1 }}</th>
-        <th>{{ account.balance }}</th>
+        <th>{{ account.balance | currency : symbol : fractionSize }}</th>
         <th>
-          <button ng-click="seeMovements()" class="btn btn-info btn-sm">Ver movimientos</button>
+          <button ng-click="seeMovements(account)" class="btn btn-info btn-sm">Ver movimientos</button>
         </th>
         <th>
           <button ng-click="registerMovement('sm', account)" class="btn btn-success btn-sm">Registrar un movimiento</button>
@@ -35,7 +35,7 @@
     </tbody>
   </table>
   <div id="alert-2" flash-alert="" active-class="in" class="alert fade"><span class="alert-message">{{flash.message}}</span></div>
-  <div style="margin-top: 20px"><a ng-href="#/" style="margin-right: 30px" class="btn btn-default btn-lg">Volver atrás	</a>
+  <div style="margin: 20px"><a ng-href="#/" style="margin-right: 30px" class="btn btn-default btn-lg">Volver atrás	</a>
     <button ng-click="addAccount('sm')" class="btn btn-lg btn-success">Add account</button>
   </div>
 </div>
