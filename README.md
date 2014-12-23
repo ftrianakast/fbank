@@ -72,7 +72,7 @@ La base de datos debe ser configurada siguiendo el archivo sobre __fbank/src/mai
 No es necesario un Script de creación de base de datos dado que el ddl es autogenerado.
 
 ### Probar el proyecto en Eclipse
-Clone el proyecto, e importelo como un Maven Project. Corra la clase __co/fbank/Application.java__ como una aplicación Standalone. De inmediato se levanta el servidor embebido Tomcat y ya puede probar los servicios REST. Esta ejecución simple es gracias a Spring Boot
+Clone el proyecto, e importelo como un Maven Project. Corra la clase __co/fbank/Application.java__ como una aplicación Standalone. De inmediato se levanta el servidor embebido Tomcat y ya puede probar los servicios REST. Esta ejecución simple es gracias a Spring Boot. Cuando se accede desde un browser es posible ver la interfaz correspondiente.
 
 ### Probar el proyecto como un jar ejecutable
 Descargue el jar [__fbank-0.1.0.jar__][2]. Ejecute el jar con el siguiente comando. Antes asegurese de tener instalado _JDK_1.8_ 
