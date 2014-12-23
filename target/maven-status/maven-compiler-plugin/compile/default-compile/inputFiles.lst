@@ -15,6 +15,7 @@
 /home/felipe/projects/fbank/src/main/java/co/fbank/persistence/ClientRepository.java
 /home/felipe/projects/fbank/src/main/java/co/fbank/services/utils/Constants.java
 /home/felipe/projects/fbank/src/main/java/co/fbank/domain/Client.java
+/home/felipe/projects/fbank/src/main/java/co/fbank/controllers/aux/NewAccountRequest.java
 /home/felipe/projects/fbank/src/main/java/co/fbank/controllers/aux/ReportRequest.java
 /home/felipe/projects/fbank/src/main/java/co/fbank/controllers/ClientController.java
 /home/felipe/projects/fbank/src/main/java/co/fbank/services/report/Report.java
@@ -29,3 +30,4 @@
 /home/felipe/projects/fbank/src/main/java/co/fbank/services/utils/DateManipulationImpl.java
 /home/felipe/projects/fbank/src/main/java/co/fbank/services/utils/JsonDateDeserializer.java
 /home/felipe/projects/fbank/src/main/java/co/fbank/services/report/MovementInfo.java
+/home/felipe/projects/fbank/src/main/java/co/fbank/controllers/aux/Message.java
