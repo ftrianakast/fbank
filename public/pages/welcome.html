@@ -24,7 +24,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr ng-repeat="client in clients">
+      <tr ng-repeat="client in clients" ng-init="getClients()">
         <th>{{ client.id || $index + 1 }}</th>
         <th>{{ client.name }}</th>
         <th>{{ client.address }}</th>
@@ -45,5 +45,5 @@
     </tbody>
   </table>
   <button ng-click="openRegisterModal('sm')" class="btn btn-default btn-lg">Registrar Cliente</button>
-  <div id="alert-1" flash-alert="success" active-class="in" style="margin-top: 30px" class="alert fade"><span class="alert-message">{{ flash.message }}</span></div>
+  <div id="alert-1" flash-alert="" active-class="in" class="alert fade"><span class="alert-message">{{flash.message}}</span></div>
 </div>

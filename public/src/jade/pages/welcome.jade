@@ -18,7 +18,7 @@ div.container
 				th
 				th
 		tbody
-			tr(ng-repeat="client in clients")
+			tr(ng-repeat="client in clients", ng-init="getClients()")
 				th {{ client.id || $index + 1 }}
 				th {{ client.name }}
 				th {{ client.address }}
@@ -33,5 +33,6 @@ div.container
 					button.btn.btn-danger.btn-sm(ng-click="deleteClient('sm', client)") Borrar	
 
 	button.btn.btn-default.btn-lg(ng-click="openRegisterModal('sm')") Registrar Cliente
-	div.alert.fade#alert-1(flash-alert="success", active-class="in", style="margin-top: 30px")
-		span.alert-message {{ flash.message }}
+	#alert-1.alert.fade(flash-alert='', active-class='in')
+		span.alert-message {{flash.message}}
+

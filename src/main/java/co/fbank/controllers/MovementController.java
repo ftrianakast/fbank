@@ -1,5 +1,6 @@
 package co.fbank.controllers;
 
+import java.util.List;
 import java.util.Optional;
 
 import javax.validation.Valid;
@@ -76,4 +77,10 @@ public class MovementController {
 		}
 	}
 
+	@RequestMapping(value = "/accounts/{accountNumber}/movements", method = RequestMethod.GET)
+	@ResponseBody
+	public List<Movement> getMovements(@PathVariable Long accountNumber) {
+		Account account = accountRepository.findOne(accountNumber);
+		return account.getMovements();
+	}	
 }

@@ -23,10 +23,11 @@ div.container
 				th 
 					button.btn.btn-danger.btn-sm(ng-click="deleteAccount('sm', account)") Borrar	
 
-	div.alert.fade#alert-2(flash-alert="success", active-class="in", style="margin-top: 30px")
-		span.alert-message {{ flash.message }}
+	#alert-2.alert.fade(flash-alert='', active-class='in')
+		span.alert-message {{flash.message}}
 
-	div(style="margin-bottom: 30px")
+
+	div(style="margin-top: 20px")
 		a.btn.btn-default.btn-lg(ng-href="#/", style="margin-right: 30px") Volver atrás	
 		button.btn.btn-lg.btn-success(ng-click="addAccount('sm')") Add account
 

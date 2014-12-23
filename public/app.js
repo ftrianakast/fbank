@@ -194,7 +194,7 @@ app.controller("AccountsCtrl", ["$scope", "$modal", "serverBridge", "$log", "fla
                 $scope.accounts.splice(index, 1);
                 $flash.to('alert-2').success = response.message;
             }).error(function(err) {
-                $flash.to('alert-2').error = response.message;
+                $flash.to('alert-3').error = response.message;
             });
         }, function() {
             $log.info("Modal dismissed at: " + new Date());
@@ -226,18 +226,29 @@ app.controller("AccountsCtrl", ["$scope", "$modal", "serverBridge", "$log", "fla
             size: size
         });
 
+        modalInstance.result.then(function(movement) {
+            $serverBridge.registerMovement(account.number, movement).success(function(response) {
+                init();
+                $flash.to('alert-2').success = response.message;
+            }).error(function(error) {
+                $flash.error = error.message;
+            });
+        }, function() {
+            $log.info("Modal dismissed at: " + new Date());
+        });
+
     }
 }]);
 
 
 app.controller("ModalAddMovementCtrl", function($scope, $modalInstance) {
     $scope.movement = {
-    	type: "",
-    	value: ""
+        type: "",
+        value: ""
     };
 
     $scope.register = function() {
-        $modalInstance.close($scope.initBalance);
+        $modalInstance.close($scope.movement);
     }
     $scope.cancel = function() {
         $modalInstance.dismiss('cancel');
@@ -276,6 +287,10 @@ app.service("serverBridge", ["$http", function($http) {
 
     this.deleteAccount = function(accountId) {
         return $http.delete("/accounts/" + accountId);
+    }
+
+    this.registerMovement = function(accountId, movement) {
+        return $http.post("/accounts/" + accountId + "/movements", movement);
     }
 
 }]);
